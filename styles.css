@@ -40,12 +40,16 @@ nav {
 }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--text-color);
     display: flex;
     align-items: center;
     gap: 12px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo div {
+    font-size: 1.8rem;
+    font-weight: 700;
 }
 
 .logo-text {
@@ -54,6 +58,7 @@ nav {
     letter-spacing: 4px;
     font-size: 1.2rem;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .nav-links {
