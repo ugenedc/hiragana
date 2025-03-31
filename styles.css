@@ -50,8 +50,8 @@ nav {
 
 .logo-text {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    font-weight: 300;
-    letter-spacing: 2px;
+    font-weight: 200;
+    letter-spacing: 4px;
     font-size: 1.2rem;
     text-transform: uppercase;
 }
@@ -277,6 +277,7 @@ nav {
 .phone-mockup {
     position: absolute;
     max-width: 450px;
+    width: 100%;
     height: auto;
     filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.25));
     transition: transform 0.3s ease;
@@ -290,7 +291,7 @@ nav {
 .phone-mockup.back {
     z-index: 1;
     transform: translate3d(20%, 0, -20px) rotate(5deg);
-    opacity: 0.95;
+    opacity: 0.9;
 }
 
 /* Features Section */
@@ -400,37 +401,26 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    text-align: center;
-    padding: 20px;
 }
 
 .footer-content .logo {
     color: white;
 }
 
-.footer-links {
-    margin-bottom: 10px;
-}
-
 .footer-links a {
-    color: #666;
+    color: #ffffff;
     text-decoration: none;
     font-size: 0.9rem;
     transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
-    color: #333;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .footer-separator {
     margin: 0 10px;
-    color: #666;
-}
-
-.copyright {
-    color: #999;
-    font-size: 0.8rem;
+    color: #ffffff;
 }
 
 /* Responsive Design */
