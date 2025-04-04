@@ -45,10 +45,55 @@ class CherryBlossomAnimation {
         this.maxBlossoms = 40;
         this.images = [];
         this.animationFrame = null;
+        this.isVisible = true;
         
         this.loadImages();
         this.resize();
+        this.setupEventListeners();
+    }
+    
+    setupEventListeners() {
         window.addEventListener('resize', () => this.resize());
+        
+        // Handle visibility change
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.pause();
+            } else {
+                this.resume();
+            }
+        });
+
+        // Handle scroll
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+            
+            this.checkVisibility();
+            
+            scrollTimeout = setTimeout(() => {
+                this.checkVisibility();
+            }, 150);
+        });
+    }
+    
+    checkVisibility() {
+        const rect = this.container.getBoundingClientRect();
+        const isVisible = (
+            rect.top < window.innerHeight &&
+            rect.bottom > 0
+        );
+        
+        if (isVisible !== this.isVisible) {
+            this.isVisible = isVisible;
+            if (isVisible) {
+                this.resume();
+            } else {
+                this.pause();
+            }
+        }
     }
     
     loadImages() {
@@ -70,7 +115,23 @@ class CherryBlossomAnimation {
     
     start() {
         if (this.animationFrame) return;
-        this.animate();
+        this.checkVisibility();
+        if (this.isVisible) {
+            this.animate();
+        }
+    }
+    
+    pause() {
+        if (this.animationFrame) {
+            cancelAnimationFrame(this.animationFrame);
+            this.animationFrame = null;
+        }
+    }
+    
+    resume() {
+        if (!this.animationFrame && this.isVisible) {
+            this.animate();
+        }
     }
     
     resize() {
