@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kanabloom - Learn Japanese with Joy</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2S8NSLRTQ7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-2S8NSLRTQ7');
+    </script>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +26,7 @@
                 <span class="logo-text">KANABLOOM</span>
             </div>
             <div class="nav-links">
-                <a href="https://apps.apple.com/au/app/kanabloom/id6743828727" class="app-store-link" target="_blank" rel="noopener noreferrer">
+                <a href="https://apps.apple.com/au/app/kanabloom/id6743828727" class="app-store-link" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'click', {'event_category': 'App Store', 'event_label': 'Header Button'});">
                     <img src="Downlodonappstore.png" alt="Download on the App Store" class="app-store-button">
                 </a>
             </div>
@@ -35,7 +44,7 @@
                 <div class="showcase-text">
                     <h2>Learn Japanese with Joy</h2>
                     <p>Discover the beauty of Japanese writing through an elegant and intuitive learning experience. With Kanabloom, mastering Hiragana and Katakana becomes a delightful journey.</p>
-                    <a href="https://apps.apple.com/au/app/kanabloom/id6743828727" class="app-store-link" target="_blank" rel="noopener noreferrer">
+                    <a href="https://apps.apple.com/au/app/kanabloom/id6743828727" class="app-store-link" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'click', {'event_category': 'App Store', 'event_label': 'Showcase Button'});">
                         <img src="Downlodonappstore.png" alt="Download on the App Store" class="app-store-button">
                     </a>
                 </div>
@@ -72,7 +81,7 @@
             <div class="download-content">
                 <h2>Start Your Journey Today</h2>
                 <p>Available now on iOS</p>
-                <a href="https://apps.apple.com/au/app/kanabloom/id6743828727" class="download-btn-black" target="_blank" rel="noopener noreferrer">Download on the App Store</a>
+                <a href="https://apps.apple.com/au/app/kanabloom/id6743828727" class="download-btn-black" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'click', {'event_category': 'App Store', 'event_label': 'Download Button'});">Download on the App Store</a>
             </div>
         </section>
 
@@ -85,9 +94,9 @@
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="/privacy-policy.html">Privacy Policy</a>
+                <a href="/privacy-policy.html" onclick="gtag('event', 'click', {'event_category': 'Footer', 'event_label': 'Privacy Policy'});">Privacy Policy</a>
                 <span class="footer-separator">|</span>
-                <a href="/terms.html">Terms of Use</a>
+                <a href="/terms.html" onclick="gtag('event', 'click', {'event_category': 'Footer', 'event_label': 'Terms of Use'});">Terms of Use</a>
             </div>
             <p class="copyright">© 2024 Kanabloom. All rights reserved.</p>
         </div>
