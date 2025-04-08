@@ -8,48 +8,28 @@ document.addEventListener('DOMContentLoaded', function() {
 function loadBlogPosts() {
     const blogPostsContainer = document.getElementById('blog-posts');
     
-    // In a real implementation, this would fetch from a server
-    // For now, we'll use a static list of posts
+    // List of actual blog posts that exist
     const posts = [
+        {
+            id: 'learn-hiragana-fast',
+            title: '5 Tips to Learn Hiragana Faster',
+            excerpt: 'Discover effective strategies to master Hiragana characters quickly and efficiently with these proven techniques.',
+            date: '2024-04-08',
+            category: 'Learning Tips'
+        },
         {
             id: 'morning-study-routine',
             title: 'Create Your Perfect Morning Japanese Study Routine',
             excerpt: 'Learn how to establish an effective morning routine for learning Japanese that fits your lifestyle and maximizes your learning potential.',
             date: '2024-04-08',
-            category: 'Study Habits',
-            image: '../images/blog/woman-with coffee.png'
+            category: 'Study Habits'
         },
         {
             id: 'study-anywhere',
             title: 'Study Japanese Anywhere: Tips for Learning While Traveling',
             excerpt: 'Discover how to maintain your Japanese studies while traveling with these effective strategies and tools.',
             date: '2024-04-08',
-            category: 'Study Tips',
-            image: '../images/blog/man-on-plane.png'
-        },
-        {
-            id: 'learn-hiragana-fast',
-            title: '5 Tips to Learn Hiragana Faster',
-            excerpt: 'Discover effective strategies to master Hiragana characters quickly and efficiently with these proven techniques.',
-            date: '2023-06-15',
-            category: 'Learning Tips',
-            image: '../images/blog/hiragana-tips.png'
-        },
-        {
-            id: 'katakana-vs-hiragana',
-            title: 'Understanding the Difference Between Katakana and Hiragana',
-            excerpt: 'Learn when to use Katakana versus Hiragana and how understanding this distinction can improve your Japanese reading skills.',
-            date: '2023-06-10',
-            category: 'Grammar',
-            image: '../images/blog/katakana-hiragana.png'
-        },
-        {
-            id: 'spaced-repetition',
-            title: 'The Science Behind Spaced Repetition',
-            excerpt: 'How Kanabloom uses spaced repetition to help you retain Japanese characters more effectively than traditional study methods.',
-            date: '2023-06-05',
-            category: 'Learning Science',
-            image: '../images/blog/spaced-repetition.png'
+            category: 'Study Tips'
         }
     ];
     
@@ -79,18 +59,8 @@ function createBlogPostCard(post) {
         day: 'numeric'
     });
     
-    // Create card HTML with image container and placeholder
+    // Create card HTML without image for now
     card.innerHTML = `
-        <div class="blog-post-image-container">
-            <div class="image-placeholder"></div>
-            <img 
-                src="${post.image}" 
-                alt="${post.title}" 
-                class="blog-post-image" 
-                loading="lazy"
-                onerror="this.onerror=null; this.src='../images/blog/hiragana-tips.png';"
-            >
-        </div>
         <div class="blog-post-content">
             <h2 class="blog-post-title">${post.title}</h2>
             <p class="blog-post-excerpt">${post.excerpt}</p>
@@ -109,20 +79,6 @@ function createBlogPostCard(post) {
             <a href="posts/${post.id}.html" class="read-more">Read More</a>
         </div>
     `;
-    
-    // Handle image loading
-    const img = card.querySelector('.blog-post-image');
-    const placeholder = card.querySelector('.image-placeholder');
-    
-    img.addEventListener('load', () => {
-        requestAnimationFrame(() => {
-            img.classList.add('loaded');
-            if (placeholder) {
-                placeholder.style.opacity = '0';
-                setTimeout(() => placeholder.remove(), 300);
-            }
-        });
-    });
     
     return card;
 }
