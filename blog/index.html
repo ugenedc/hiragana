@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kanabloom Blog - Learn Japanese with tips, tricks, and insights about Hiragana, Katakana, and Japanese language learning.">
+    <meta name="keywords" content="Japanese, Hiragana, Katakana, flashcards, language learning, education, blog">
+    <meta name="author" content="Eugene D'Hage-Craig">
+    <meta property="og:title" content="Kanabloom Blog - Japanese Learning Resources">
+    <meta property="og:description" content="Discover tips, tricks, and insights about learning Japanese with Kanabloom's blog articles.">
+    <meta property="og:image" content="https://hiraganaflashcards.com.au/Title.png">
+    <meta property="og:url" content="https://hiraganaflashcards.com.au/blog">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Kanabloom Blog - Japanese Learning Resources</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="blog.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TVHRBEQWR0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TVHRBEQWR0');
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="../index.html" class="logo">
+                    <div>開花</div>
+                    <span class="logo-text">KANABLOOM</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="index.html" class="active">Blog</a>
+                <a href="https://apps.apple.com/au/app/kanabloom/id6743828727" class="app-store-link" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'click', {'event_category': 'App Store', 'event_label': 'Header Button'});">
+                    <img src="../Downlodonappstore.png" alt="Download on the App Store" class="app-store-button">
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="blog-container">
+        <h1>Kanabloom Blog</h1>
+        <p class="blog-intro">Discover tips, tricks, and insights about learning Japanese with Kanabloom.</p>
+        
+        <div class="blog-posts" id="blog-posts">
+            <!-- Blog posts will be loaded here dynamically -->
+            <div class="loading">Loading blog posts...</div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="../index.html">Home</a>
+                <span class="footer-separator">|</span>
+                <a href="../privacy-policy.html">Privacy Policy</a>
+                <span class="footer-separator">|</span>
+                <a href="../terms.html">Terms of Use</a>
+            </div>
+            <p class="copyright">© 2024 Kanabloom. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="blog.js"></script>
+</body>
+</html> 

@@ -1,0 +1,26 @@
+{
+  "name": "kanabloom",
+  "version": "1.0.0",
+  "description": "Kanabloom - Learn Japanese with Joy",
+  "main": "index.html",
+  "scripts": {
+    "generate-blog": "node blog/generate-posts.js",
+    "start": "npx http-server -o"
+  },
+  "keywords": [
+    "japanese",
+    "hiragana",
+    "katakana",
+    "flashcards",
+    "language learning",
+    "education"
+  ],
+  "author": "Eugene D'Hage-Craig",
+  "license": "MIT",
+  "dependencies": {
+    "marked": "^4.3.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+} 
