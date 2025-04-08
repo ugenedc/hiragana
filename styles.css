@@ -303,6 +303,8 @@ nav {
 .features {
     padding: 4rem 2rem;
     background-color: white;
+    position: relative;
+    overflow: hidden;
 }
 
 .features h2 {
@@ -325,6 +327,8 @@ nav {
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
+    position: relative;
+    z-index: 1;
 }
 
 .feature-item.reverse {
@@ -338,6 +342,7 @@ nav {
 .feature-image {
     position: relative;
     padding: 0;
+    z-index: 2;
 }
 
 .feature-image img {
@@ -349,6 +354,8 @@ nav {
     margin: 0 auto;
     display: block;
     transition: transform 0.3s ease;
+    position: relative;
+    z-index: 2;
 }
 
 .feature-image img:hover {
@@ -357,6 +364,8 @@ nav {
 
 .feature-content {
     padding: 2rem;
+    position: relative;
+    z-index: 2;
 }
 
 .feature-content h3 {

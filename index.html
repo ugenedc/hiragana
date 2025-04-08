@@ -16,12 +16,31 @@
         /* Critical path CSS */
         body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
         .feature-grid { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        .feature-item { margin-bottom: 40px; }
+        .feature-item { 
+            margin-bottom: 40px; 
+            position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            z-index: 2;
+        }
         .phone-screenshot { max-width: 100%; height: auto; }
         .feature-content { margin-top: 20px; }
         h2 { margin: 40px 0 20px; text-align: center; }
         h3 { margin: 20px 0; }
         .app-store-button { height: 40px; width: auto; }
+
+        /* Add backgrounds to main sections */
+        header, 
+        .hero,
+        .app-showcase,
+        .features,
+        .testimonials,
+        .download,
+        .about,
+        footer {
+            position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            z-index: 2;
+        }
     </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TVHRBEQWR0"></script>
@@ -36,7 +55,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -46,6 +64,7 @@
                 <span class="logo-text">KANABLOOM</span>
             </div>
             <div class="nav-links">
+                <a href="blog/index.html">Blog</a>
                 <a href="https://apps.apple.com/au/app/kanabloom/id6743828727" class="app-store-link" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'click', {'event_category': 'App Store', 'event_label': 'Header Button'});">
                     <img src="Downlodonappstore.png" alt="Download on the App Store" class="app-store-button">
                 </a>
@@ -230,6 +249,8 @@
     <footer>
         <div class="footer-content">
             <div class="footer-links">
+                <a href="/blog/index.html" onclick="gtag('event', 'click', {'event_category': 'Footer', 'event_label': 'Blog'});">Blog</a>
+                <span class="footer-separator">|</span>
                 <a href="/privacy-policy.html" onclick="gtag('event', 'click', {'event_category': 'Footer', 'event_label': 'Privacy Policy'});">Privacy Policy</a>
                 <span class="footer-separator">|</span>
                 <a href="/terms.html" onclick="gtag('event', 'click', {'event_category': 'Footer', 'event_label': 'Terms of Use'});">Terms of Use</a>
@@ -238,6 +259,7 @@
         </div>
     </footer>
     <script src="cherry-blossoms.js"></script>
+    <script src="feature-blossoms.js"></script>
     <script src="phone-animation.js"></script>
 </body>
 </html> 
