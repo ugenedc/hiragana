@@ -1,81 +1,18 @@
 /* Blog Styles */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
+    /* Keep body styles if they are specific overrides for blog, otherwise remove */
+    /* Example: Maybe keep font-family if blog uses a different one */
+    /* For now, assume main styles.css handles body */
 }
 
-header {
-    background: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-nav {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #333;
-    font-weight: 600;
-}
-
-.logo div {
-    font-size: 1.8rem;
-    margin-right: 10px;
-}
-
-.logo-text {
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.nav-links a {
-    color: #333;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-    color: #ff6b6b;
-}
-
-.nav-links a.active {
-    color: #ff6b6b;
-}
-
-.app-store-button {
-    height: 40px;
-    width: auto;
-}
+/* Remove Header, Nav, Logo, Nav-links, app-store-button styles */
+/* These should be inherited from ../styles.css */
 
 .blog-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 2rem; /* Adjust top/bottom padding if header height changes */
+    padding-top: 120px; /* Add padding to account for fixed/sticky header */
 }
 
 .blog-intro {
