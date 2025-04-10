@@ -15,21 +15,40 @@ function loadBlogPosts() {
             title: '5 Tips to Learn Hiragana Faster',
             excerpt: 'Discover effective strategies to master Hiragana characters quickly and efficiently with these proven techniques.',
             date: '2024-04-08',
-            category: 'Learning Tips'
+            category: 'Learning Tips',
+            image: '../images/blog/hiragana-tips.png'
         },
         {
             id: 'morning-study-routine',
             title: 'Create Your Perfect Morning Japanese Study Routine',
             excerpt: 'Learn how to establish an effective morning routine for learning Japanese that fits your lifestyle and maximizes your learning potential.',
             date: '2024-04-08',
-            category: 'Study Habits'
+            category: 'Study Habits',
+            image: '../images/blog/woman-with-coffee.png'
         },
         {
             id: 'study-anywhere',
             title: 'Study Japanese Anywhere: Tips for Learning While Traveling',
             excerpt: 'Discover how to maintain your Japanese studies while traveling with these effective strategies and tools.',
             date: '2024-04-08',
-            category: 'Study Tips'
+            category: 'Study Tips',
+            image: '../images/blog/man-on-plane.png'
+        },
+        {
+            id: 'hiragana-vs-katakana',
+            title: 'Hiragana vs Katakana: Understanding the Differences',
+            excerpt: 'Learn the key differences between Hiragana and Katakana writing systems and when to use each one.',
+            date: '2024-04-08',
+            category: 'Learning Tips',
+            image: '../images/blog/katakana-hiragana.png'
+        },
+        {
+            id: 'spaced-repetition',
+            title: 'Master Japanese with Spaced Repetition',
+            excerpt: 'Discover how spaced repetition can revolutionize your Japanese learning journey and help you retain more information.',
+            date: '2024-04-08',
+            category: 'Study Tips',
+            image: '../images/blog/spaced-repetition.png'
         }
     ];
     
@@ -61,6 +80,9 @@ function createBlogPostCard(post) {
     
     // Create card HTML without image for now
     card.innerHTML = `
+        <div class="blog-post-image">
+            <img src="${post.image}" alt="${post.title}" onerror="this.src='../images/blog/placeholder.png'">
+        </div>
         <div class="blog-post-content">
             <h2 class="blog-post-title">${post.title}</h2>
             <p class="blog-post-excerpt">${post.excerpt}</p>
