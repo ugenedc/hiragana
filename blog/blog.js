@@ -73,6 +73,46 @@ function loadBlogPosts() {
             date: '2024-04-11',
             category: 'Study Methods',
             image: '../images/blog/creative-japanese-learning.png'
+        },
+        {
+            id: 'hiragana-learning-time',
+            title: 'How Long Does It Really Take to Learn Hiragana?',
+            excerpt: 'How long does it take to learn Hiragana? Explore realistic timelines, factors affecting learning speed, and tips for mastering the characters efficiently.',
+            date: '2024-04-11',
+            category: 'Learning Tips',
+            image: '../images/blog/hiragana-learning-time.png'
+        },
+        {
+            id: 'katakana-vs-kanji',
+            title: 'Katakana vs Kanji: What\'s the Difference?',
+            excerpt: 'Confused about Katakana vs Kanji? Learn the crucial differences between these Japanese writing systems, including their origins, uses, and appearances.',
+            date: '2024-04-11',
+            category: 'Japanese Writing',
+            image: '../images/blog/katakana-vs-kanji.png'
+        },
+        {
+            id: 'effective-japanese-flashcards',
+            title: 'Making Japanese Flashcards That Actually Work',
+            excerpt: 'Learn how to create effective Japanese flashcards for Hiragana, Katakana, and vocabulary. Tips for design, content, and using SRS for best results.',
+            date: '2024-04-11',
+            category: 'Study Tools',
+            image: '../images/blog/effective-japanese-flashcards.png'
+        },
+        {
+            id: 'japanese-reading-practice',
+            title: 'Reading Practice for Japanese Beginners (Hiragana & Katakana)',
+            excerpt: 'Start reading Japanese! Find easy reading practice resources and tips for beginners focusing on Hiragana and Katakana characters.',
+            date: '2024-04-11',
+            category: 'Reading Practice',
+            image: '../images/blog/japanese-reading-practice.png'
+        },
+        {
+            id: 'hiragana-before-katakana',
+            title: 'Why You Should Learn Hiragana Before Katakana',
+            excerpt: 'Why learn Hiragana before Katakana? Understand the standard Japanese learning order and the benefits of mastering Hiragana first.',
+            date: '2024-04-11',
+            category: 'Learning Order',
+            image: '../images/blog/hiragana-before-katakana.png'
         }
     ];
     
