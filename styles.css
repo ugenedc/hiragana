@@ -40,6 +40,11 @@ nav {
 }
 
 .logo {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo a {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -50,15 +55,18 @@ nav {
 .logo div {
     font-size: 1.8rem;
     font-weight: 700;
+    color: #000000;
 }
 
 .logo-text {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     font-weight: 200;
-    letter-spacing: 4px;
+    letter-spacing: normal;
     font-size: 1.2rem;
     text-transform: uppercase;
     white-space: nowrap;
+    color: #000000;
+    text-decoration: none;
 }
 
 .nav-links {

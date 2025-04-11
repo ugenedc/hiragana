@@ -76,6 +76,9 @@ function loadBlogPosts() {
         }
     ];
     
+    // Sort posts by date, newest first
+    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
     // Create all blog post cards first before adding to DOM
     const fragment = document.createDocumentFragment();
     posts.forEach(post => {
