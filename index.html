@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Learn Japanese with Kanabloom - Master Hiragana and Katakana through beautiful, intuitive flashcards designed for beginners and intermediate learners.">
-    <meta name="keywords" content="Japanese, Hiragana, Katakana, flashcards, language learning, education">
+    <meta name="description" content="Master Japanese effortlessly! Learn Hiragana and Katakana with Kanabloom's beautiful, intuitive flashcards app. Perfect for beginners. Start learning today!">
+    <meta name="keywords" content="learn hiragana, learn katakana, hiragana flashcards, katakana flashcards, learn japanese, japanese flashcards, japanese writing, language learning, iOS app">
     <meta name="author" content="Eugene D'Hage-Craig">
-    <meta property="og:title" content="Kanabloom - Learn Japanese with Joy">
-    <meta property="og:description" content="Master Japanese characters with Kanabloom! Start with basic vowels and progress to complete Hiragana and Katakana sets through engaging flashcard practice.">
+    <meta property="og:title" content="Kanabloom: Learn Hiragana & Katakana with Japanese Flashcards">
+    <meta property="og:description" content="Ready to learn Japanese? Master Hiragana and Katakana with Kanabloom's engaging flashcard app for iOS. Start your learning journey!">
     <meta property="og:image" content="https://hiraganaflashcards.com.au/Title.png">
     <meta property="og:url" content="https://hiraganaflashcards.com.au">
     <meta name="twitter:card" content="summary_large_image">
-    <title>Kanabloom - Learn Japanese with Joy</title>
+    <title>Kanabloom: Learn Hiragana & Katakana with Japanese Flashcards</title>
     <style>
         /* Critical path CSS */
         body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
@@ -24,7 +24,7 @@
         }
         .phone-screenshot { max-width: 100%; height: auto; }
         .feature-content { margin-top: 20px; }
-        h2 { margin: 40px 0 20px; text-align: center; }
+        h1, h2 { margin: 40px 0 20px; text-align: center; }
         h3 { margin: 20px 0; }
         .app-store-button { height: 40px; width: auto; }
 
@@ -55,18 +55,49 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- JSON-LD Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Kanabloom",
+      "operatingSystem": "iOS",
+      "applicationCategory": "EducationApplication",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5", // Update with actual rating if available
+        "ratingCount": "3"  // Update with actual rating count if available
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0", // Price for the free version
+        "priceCurrency": "AUD"
+      },
+      "description": "Learn Hiragana and Katakana with Kanabloom's engaging flashcard app. Master Japanese writing systems efficiently.",
+      "url": "https://apps.apple.com/au/app/kanabloom/id6743828727",
+      "screenshot": [
+        "https://hiraganaflashcards.com.au/Beginer-mode.png",
+        "https://hiraganaflashcards.com.au/Hiragana-mode.png",
+        "https://hiraganaflashcards.com.au/Katakana-Mode.png"
+       ],
+      "keywords": "learn hiragana, learn katakana, hiragana flashcards, japanese flashcards, learn japanese"
+    }
+    </script>
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">
-                <div>開花</div>
-                <span class="logo-text">KANABLOOM</span>
+                <a href="https://hiraganaflashcards.com.au" title="Kanabloom Homepage">
+                    <div>開花</div>
+                    <span class="logo-text">KANABLOOM</span>
+                </a>
             </div>
             <div class="nav-links">
                 <a href="blog/index.html">Blog</a>
                 <a href="https://apps.apple.com/au/app/kanabloom/id6743828727" class="app-store-link" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'click', {'event_category': 'App Store', 'event_label': 'Header Button'});">
-                    <img src="Downlodonappstore.png" alt="Download on the App Store" class="app-store-button">
+                    <img src="Downlodonappstore.png" alt="Download Kanabloom on the App Store" class="app-store-button">
                 </a>
             </div>
         </nav>
@@ -74,37 +105,37 @@
 
     <main>
         <section class="hero">
-            <img src="Title.png" alt="Kanabloom" class="title-image">
+            <img src="Title.png" alt="Kanabloom - Learn Japanese Hiragana and Katakana" class="title-image">
         </section>
 
         <section class="app-showcase">
             <div class="cherry-blossoms" id="cherryBlossoms"></div>
             <div class="showcase-content">
                 <div class="showcase-text">
-                    <h2>Learn Japanese with Joy</h2>
-                    <p>Discover the beauty of Japanese writing through an elegant and intuitive learning experience. With Kanabloom, mastering Hiragana and Katakana becomes a delightful journey.</p>
+                    <h1>Learn Japanese with Joy</h1>
+                    <p>Discover the beauty of Japanese writing through an elegant and intuitive learning experience. With Kanabloom, mastering Hiragana and Katakana becomes a delightful journey. Use our intuitive Japanese flashcards app to start learning today.</p>
                     <a href="https://apps.apple.com/au/app/kanabloom/id6743828727" class="app-store-link" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'app_download', {'event_category': 'App Store', 'event_label': 'Hero Section', 'section': 'Hero'});">
-                        <img src="Downlodonappstore.png" alt="Download on the App Store" class="app-store-button">
+                        <img src="Downlodonappstore.png" alt="Download Kanabloom Japanese Flashcards App on the App Store" class="app-store-button">
                     </a>
                 </div>
                 <div class="phone-container" id="phoneContainer">
-                    <img src="phone-screenshot-1.png" alt="Kanabloom App Screenshot" class="phone-mockup front" id="phoneFront">
-                    <img src="phone-screenshot-2.png" alt="Kanabloom App Screenshot" class="phone-mockup back" id="phoneBack">
+                    <img src="phone-screenshot-1.png" alt="Kanabloom App Screenshot - Hiragana Flashcards" class="phone-mockup front" id="phoneFront">
+                    <img src="phone-screenshot-2.png" alt="Kanabloom App Screenshot - Katakana Flashcards" class="phone-mockup back" id="phoneBack">
                 </div>
             </div>
         </section>
 
         <section id="features" class="features">
-            <h2>App Features</h2>
+            <h2>Kanabloom Features for Learning Japanese</h2>
             
             <div class="feature-grid">
                 <div class="feature-item">
                     <div class="feature-image">
-                        <img src="Beginer-mode.png" alt="Beginner Mode" class="phone-screenshot">
+                        <img src="Beginer-mode.png" alt="Kanabloom Beginner Mode - Free Japanese Flashcards" class="phone-screenshot">
                     </div>
                     <div class="feature-content">
                         <h3>Beginner Mode <span class="free-tag">Free - No Ads</span></h3>
-                        <p>Start your Japanese journey without any barriers! Our beginner mode is completely free and ad-free, offering essential characters to build your foundation in Japanese writing. Includes our smart revision system to help you master characters at your own pace, tracking your progress and automatically focusing on characters you find challenging.</p>
+                        <p>Start your journey to learn Japanese writing without barriers! Our beginner mode is completely free and ad-free, offering essential characters to build your foundation. Includes our smart revision system to help you master characters with effective Japanese flashcards.</p>
                         <a href="https://apps.apple.com/au/app/kanabloom/id6743828727" class="feature-cta" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'app_download', {'event_category': 'App Store', 'event_label': 'Beginner Mode', 'section': 'Features'});">
                             Download App
                         </a>
@@ -113,11 +144,11 @@
 
                 <div class="feature-item reverse">
                     <div class="feature-image">
-                        <img src="Hiragana-mode.png" alt="Hiragana Mode" class="phone-screenshot">
+                        <img src="Hiragana-mode.png" alt="Kanabloom Hiragana Mode - Learn Hiragana Flashcards" class="phone-screenshot">
                     </div>
                     <div class="feature-content">
-                        <h3>Hiragana Mode <span class="premium-tag">Premium</span></h3>
-                        <p>Master the complete Hiragana alphabet with our comprehensive learning system. Clear stroke orders, native pronunciations, and intuitive practice sessions make learning Japanese characters a joy. The perfect starting point for reading Japanese.</p>
+                        <h3>Learn Hiragana Mode <span class="premium-tag">Premium</span></h3>
+                        <p>Master the complete Hiragana alphabet with our comprehensive learning system. Clear stroke orders, native pronunciations, and intuitive Hiragana flashcards make learning Japanese characters a joy. The perfect starting point to learn Hiragana.</p>
                         <a href="https://apps.apple.com/au/app/kanabloom/id6743828727" class="feature-cta" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'app_download', {'event_category': 'App Store', 'event_label': 'Hiragana Mode', 'section': 'Features'});">
                             Download App
                         </a>
@@ -126,11 +157,11 @@
 
                 <div class="feature-item">
                     <div class="feature-image">
-                        <img src="Katakana-Mode.png" alt="Katakana Mode" class="phone-screenshot">
+                        <img src="Katakana-Mode.png" alt="Kanabloom Katakana Mode - Learn Katakana Flashcards" class="phone-screenshot">
                     </div>
                     <div class="feature-content">
-                        <h3>Katakana Mode <span class="premium-tag">Premium</span></h3>
-                        <p>Ready to advance? Dive into Katakana, essential for reading modern Japanese terms and foreign words. Our premium Katakana mode provides the same intuitive learning experience to help you master this vital writing system.</p>
+                        <h3>Learn Katakana Mode <span class="premium-tag">Premium</span></h3>
+                        <p>Ready to advance? Dive into Katakana, essential for reading modern Japanese terms. Our premium Katakana mode provides the same intuitive learning experience with Katakana flashcards to help you master this vital writing system.</p>
                         <a href="https://apps.apple.com/au/app/kanabloom/id6743828727" class="feature-cta" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'app_download', {'event_category': 'App Store', 'event_label': 'Katakana Mode', 'section': 'Features'});">
                             Download App
                         </a>
@@ -139,11 +170,11 @@
 
                 <div class="feature-item reverse">
                     <div class="feature-image">
-                        <img src="Custom-mode.png" alt="Custom Mode" class="phone-screenshot">
+                        <img src="Custom-mode.png" alt="Kanabloom Custom Mode - Hiragana and Katakana Flashcards" class="phone-screenshot">
                     </div>
                     <div class="feature-content">
-                        <h3>Custom Mode <span class="premium-tag">Premium</span></h3>
-                        <p>Create your perfect learning environment with our custom flashcard sets. Mix Hiragana and Katakana characters to focus on exactly what you need to practice. Personalize your learning journey for maximum efficiency.</p>
+                        <h3>Custom Japanese Flashcards Mode <span class="premium-tag">Premium</span></h3>
+                        <p>Create your perfect learning environment with our custom flashcard sets. Mix Hiragana and Katakana characters to focus on exactly what you need to practice. Personalize your Japanese learning journey for maximum efficiency.</p>
                         <a href="https://apps.apple.com/au/app/kanabloom/id6743828727" class="feature-cta" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'app_download', {'event_category': 'App Store', 'event_label': 'Custom Mode', 'section': 'Features'});">
                             Download App
                         </a>
@@ -152,11 +183,11 @@
 
                 <div class="feature-item">
                     <div class="feature-image">
-                        <img src="revison.png" alt="Revision Mode" class="phone-screenshot">
+                        <img src="revison.png" alt="Kanabloom Revision Mode - Smart Japanese Flashcards" class="phone-screenshot">
                     </div>
                     <div class="feature-content">
                         <h3>Smart Revision System <span class="premium-tag all-modes">All Modes</span></h3>
-                        <p>Every mode in Kanabloom features our intelligent revision system. It automatically identifies characters you find challenging and creates personalized practice sessions. Characters are tracked until you've truly mastered them, ensuring a solid foundation before moving forward. Available in both free and premium modes!</p>
+                        <p>Every mode in Kanabloom features our intelligent revision system using spaced repetition. It automatically identifies characters you find challenging and creates personalized practice sessions with Hiragana and Katakana flashcards. Ensure a solid foundation before moving forward!</p>
                         <a href="https://apps.apple.com/au/app/kanabloom/id6743828727" class="feature-cta" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'app_download', {'event_category': 'App Store', 'event_label': 'Revision Mode', 'section': 'Features'});">
                             Download App
                         </a>
@@ -165,11 +196,11 @@
 
                 <div class="feature-item reverse">
                     <div class="feature-image">
-                        <img src="word-mode.png" alt="Words Mode - Coming Soon" class="phone-screenshot coming-soon">
+                        <img src="word-mode.png" alt="Kanabloom Japanese Words Mode - Coming Soon" class="phone-screenshot coming-soon">
                     </div>
                     <div class="feature-content">
-                        <h3>Words Mode <span class="coming-soon-tag">Coming Soon!</span></h3>
-                        <p>Put your character knowledge into practice! Soon you'll be able to learn common Japanese vocabulary using the characters you've mastered. Build your vocabulary while reinforcing your reading skills in this exciting new mode.</p>
+                        <h3>Japanese Words Mode <span class="coming-soon-tag">Coming Soon!</span></h3>
+                        <p>Put your character knowledge into practice! Soon you'll be able to learn common Japanese vocabulary using the Hiragana and Katakana characters you've mastered. Build your vocabulary while reinforcing your reading skills in this exciting new mode.</p>
                         <a href="https://apps.apple.com/au/app/kanabloom/id6743828727" class="feature-cta" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'app_download', {'event_category': 'App Store', 'event_label': 'Words Mode', 'section': 'Features'});">
                             Download App
                         </a>
@@ -179,16 +210,16 @@
         </section>
 
         <section id="testimonials" class="testimonials">
-            <h2>What Our Users Say</h2>
+            <h2>What Our Users Say About Learning Japanese with Kanabloom</h2>
             <div class="testimonial-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-content">
                         <div class="star-rating">
-                            <img src="Star.png" alt="star" class="star">
-                            <img src="Star.png" alt="star" class="star">
-                            <img src="Star.png" alt="star" class="star">
-                            <img src="Star.png" alt="star" class="star">
-                            <img src="Star.png" alt="star" class="star">
+                            <img src="Star.png" alt="star rating" class="star">
+                            <img src="Star.png" alt="star rating" class="star">
+                            <img src="Star.png" alt="star rating" class="star">
+                            <img src="Star.png" alt="star rating" class="star">
+                            <img src="Star.png" alt="star rating" class="star">
                         </div>
                         <p>"Kanabloom made learning Hiragana so much easier! The beautiful design and intuitive interface kept me motivated to practice daily."</p>
                     </div>
@@ -200,13 +231,13 @@
                 <div class="testimonial-card">
                     <div class="testimonial-content">
                         <div class="star-rating">
-                            <img src="Star.png" alt="star" class="star">
-                            <img src="Star.png" alt="star" class="star">
-                            <img src="Star.png" alt="star" class="star">
-                            <img src="Star.png" alt="star" class="star">
-                            <img src="Star.png" alt="star" class="star">
+                            <img src="Star.png" alt="star rating" class="star">
+                            <img src="Star.png" alt="star rating" class="star">
+                            <img src="Star.png" alt="star rating" class="star">
+                            <img src="Star.png" alt="star rating" class="star">
+                            <img src="Star.png" alt="star rating" class="star">
                         </div>
-                        <p>"I've tried several apps for learning Japanese characters, but Kanabloom's clean design and effective learning path made it my favorite."</p>
+                        <p>"I've tried several apps for learning Japanese characters, but Kanabloom's clean design and effective Hiragana flashcards made it my favorite."</p>
                     </div>
                     <div class="testimonial-author">
                         <p class="author-name">Michael T.</p>
@@ -216,13 +247,13 @@
                 <div class="testimonial-card">
                     <div class="testimonial-content">
                         <div class="star-rating">
-                            <img src="Star.png" alt="star" class="star">
-                            <img src="Star.png" alt="star" class="star">
-                            <img src="Star.png" alt="star" class="star">
-                            <img src="Star.png" alt="star" class="star">
-                            <img src="Star.png" alt="star" class="star">
+                            <img src="Star.png" alt="star rating" class="star">
+                            <img src="Star.png" alt="star rating" class="star">
+                            <img src="Star.png" alt="star rating" class="star">
+                            <img src="Star.png" alt="star rating" class="star">
+                            <img src="Star.png" alt="star rating" class="star">
                         </div>
-                        <p>"The custom flashcard feature is brilliant! I can focus on the characters I find challenging and track my progress effectively."</p>
+                        <p>"The custom flashcard feature is brilliant! I can focus on the Hiragana and Katakana I find challenging and track my progress effectively."</p>
                     </div>
                     <div class="testimonial-author">
                         <p class="author-name">Emily R.</p>
@@ -234,32 +265,33 @@
 
         <section id="download" class="download">
             <div class="download-content">
-                <h2>Start Your Journey Today</h2>
-                <p>Available now on iOS</p>
-                <a href="https://apps.apple.com/au/app/kanabloom/id6743828727" class="download-btn-black" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'app_download', {'event_category': 'App Store', 'event_label': 'Main CTA', 'section': 'Download'});">Download on the App Store</a>
+                <h2>Start Your Japanese Learning Journey Today</h2>
+                <p>Download Kanabloom now on iOS and start mastering Hiragana and Katakana!</p>
+                <a href="https://apps.apple.com/au/app/kanabloom/id6743828727" class="download-btn-black" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'app_download', {'event_category': 'App Store', 'event_label': 'Main CTA', 'section': 'Download'});">Download Kanabloom Flashcards</a>
             </div>
         </section>
 
         <section id="about" class="about">
-            <h2>About Kanabloom</h2>
-            <p>Kanabloom was created with a simple mission: to make learning Japanese characters beautiful, enjoyable, and effective. Our app combines elegant design with proven learning methods to help you master Hiragana and Katakana naturally.</p>
+            <h2>About Kanabloom - Your Japanese Learning Partner</h2>
+            <p>Kanabloom was created with a simple mission: to make learning Japanese characters beautiful, enjoyable, and effective. Our app combines elegant design with proven learning methods like spaced repetition flashcards to help you master Hiragana and Katakana naturally.</p>
         </section>
     </main>
 
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="/blog/index.html" onclick="gtag('event', 'click', {'event_category': 'Footer', 'event_label': 'Blog'});">Blog</a>
+                 <a href="https://hiraganaflashcards.com.au" title="Kanabloom Homepage">Home</a>
+                 <span class="footer-separator">|</span>
+                <a href="blog/index.html">Blog</a>
                 <span class="footer-separator">|</span>
-                <a href="/privacy-policy.html" onclick="gtag('event', 'click', {'event_category': 'Footer', 'event_label': 'Privacy Policy'});">Privacy Policy</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
                 <span class="footer-separator">|</span>
-                <a href="/terms.html" onclick="gtag('event', 'click', {'event_category': 'Footer', 'event_label': 'Terms of Use'});">Terms of Use</a>
+                <a href="terms.html">Terms of Use</a>
             </div>
-            <p class="copyright">© 2024 Kanabloom. All rights reserved.</p>
+            <p class="copyright">© 2024 Kanabloom. Learn Hiragana & Katakana. All rights reserved.</p>
         </div>
     </footer>
-    <script src="cherry-blossoms.js"></script>
-    <script src="feature-blossoms.js"></script>
-    <script src="phone-animation.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html> 

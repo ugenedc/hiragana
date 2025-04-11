@@ -13,7 +13,7 @@ function loadBlogPosts() {
         {
             id: 'learn-hiragana-fast',
             title: '5 Tips to Learn Hiragana Faster',
-            excerpt: 'Discover effective strategies to master Hiragana characters quickly and efficiently with these proven techniques.',
+            excerpt: 'Learn Hiragana faster with 5 effective tips. Improve your Japanese writing skills using proven strategies and flashcards.',
             date: '2024-04-08',
             category: 'Learning Tips',
             image: '../images/blog/hiragana-tips.png'
@@ -21,7 +21,7 @@ function loadBlogPosts() {
         {
             id: 'morning-study-routine',
             title: 'Create Your Perfect Morning Japanese Study Routine',
-            excerpt: 'Learn how to establish an effective morning routine for learning Japanese that fits your lifestyle and maximizes your learning potential.',
+            excerpt: 'Design the perfect morning study routine to learn Japanese effectively. Tips for consistency, focus, and using flashcards.',
             date: '2024-04-08',
             category: 'Study Habits',
             image: '../images/blog/woman-with-coffee.png'
@@ -29,7 +29,7 @@ function loadBlogPosts() {
         {
             id: 'study-anywhere',
             title: 'Study Japanese Anywhere: Tips for Learning While Traveling',
-            excerpt: 'Discover how to maintain your Japanese studies while traveling with these effective strategies and tools.',
+            excerpt: 'Learn Japanese anywhere! Discover practical tips and tools, like flashcard apps, to continue your studies while traveling.',
             date: '2024-04-08',
             category: 'Study Tips',
             image: '../images/blog/man-on-plane.png'
@@ -37,18 +37,42 @@ function loadBlogPosts() {
         {
             id: 'hiragana-vs-katakana',
             title: 'Hiragana vs Katakana: Understanding the Differences',
-            excerpt: 'Learn the key differences between Hiragana and Katakana writing systems and when to use each one.',
+            excerpt: 'Learn the key differences between Hiragana and Katakana, the two essential Japanese writing systems, and when to use each.',
             date: '2024-04-08',
             category: 'Learning Tips',
             image: '../images/blog/katakana-hiragana.png'
         },
         {
             id: 'spaced-repetition',
-            title: 'Master Japanese with Spaced Repetition',
-            excerpt: 'Discover how spaced repetition can revolutionize your Japanese learning journey and help you retain more information.',
+            title: 'Master Japanese with Spaced Repetition (SRS)',
+            excerpt: 'Learn Japanese faster and retain more using Spaced Repetition Systems (SRS) for Hiragana, Katakana, and vocabulary flashcards.',
             date: '2024-04-08',
             category: 'Study Tips',
             image: '../images/blog/spaced-repetition.png'
+        },
+        {
+            id: 'hiragana-mistakes',
+            title: 'Common Mistakes to Avoid When Learning Hiragana',
+            excerpt: 'Learning Hiragana? Avoid common mistakes like mixing similar characters and relying too much on Romaji. Improve your study!',
+            date: '2024-04-11',
+            category: 'Learning Tips',
+            image: '../images/blog/hiragana-mistakes.png'
+        },
+        {
+            id: 'katakana-practice-tips',
+            title: 'Katakana Practice: Tips for Mastering Angular Characters',
+            excerpt: 'Master Katakana with practice tips! Differentiate similar characters, practice writing angular strokes, and use Katakana flashcards.',
+            date: '2024-04-11',
+            category: 'Learning Tips',
+            image: '../images/blog/katakana-practice-tips.png'
+        },
+        {
+            id: 'creative-japanese-learning',
+            title: 'Beyond Flashcards: Creative Ways to Learn Japanese Characters',
+            excerpt: 'Go beyond flashcards! Discover creative ways to learn Japanese characters like Hiragana and Katakana, including manga, music, and games.',
+            date: '2024-04-11',
+            category: 'Study Methods',
+            image: '../images/blog/creative-japanese-learning.png'
         }
     ];
     

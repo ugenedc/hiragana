@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kanabloom Blog - Learn Japanese with tips, tricks, and insights about Hiragana, Katakana, and Japanese language learning.">
-    <meta name="keywords" content="Japanese, Hiragana, Katakana, flashcards, language learning, education, blog">
+    <meta name="description" content="Explore the Kanabloom blog for tips, tricks, and insights on how to learn Japanese, master Hiragana and Katakana, and use flashcards effectively.">
+    <meta name="keywords" content="learn japanese blog, learn hiragana, learn katakana, hiragana flashcards, katakana flashcards, japanese study tips, language learning">
     <meta name="author" content="Eugene D'Hage-Craig">
-    <meta property="og:title" content="Kanabloom Blog - Japanese Learning Resources">
-    <meta property="og:description" content="Discover tips, tricks, and insights about learning Japanese with Kanabloom's blog articles.">
+    <meta property="og:title" content="Kanabloom Blog | Learn Japanese, Hiragana & Katakana Tips">
+    <meta property="og:description" content="Find helpful articles on the Kanabloom blog to improve your Japanese learning. Discover tips for Hiragana, Katakana, and using flashcards.">
     <meta property="og:image" content="https://hiraganaflashcards.com.au/Title.png">
     <meta property="og:url" content="https://hiraganaflashcards.com.au/blog">
     <meta name="twitter:card" content="summary_large_image">
-    <title>Kanabloom Blog - Japanese Learning Resources</title>
+    <title>Kanabloom Blog | Learn Japanese, Hiragana & Katakana Tips</title>
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="blog.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,12 +25,30 @@
       gtag('js', new Date());
       gtag('config', 'G-TVHRBEQWR0');
     </script>
+    <!-- JSON-LD Schema Markup for Blog Listing -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Kanabloom Blog",
+      "description": "Articles and tips for learning Japanese, Hiragana, and Katakana with Kanabloom flashcards.",
+      "url": "https://hiraganaflashcards.com.au/blog",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Kanabloom",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://hiraganaflashcards.com.au/Title.png" // Or a specific logo URL
+        }
+      }
+    }
+    </script>
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">
-                <a href="../index.html" class="logo">
+                <a href="../index.html" class="logo" title="Kanabloom Homepage">
                     <div>開花</div>
                     <span class="logo-text">KANABLOOM</span>
                 </a>
@@ -39,15 +57,15 @@
                 <a href="../index.html">Home</a>
                 <a href="index.html" class="active">Blog</a>
                 <a href="https://apps.apple.com/au/app/kanabloom/id6743828727" class="app-store-link" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'click', {'event_category': 'App Store', 'event_label': 'Header Button'});">
-                    <img src="../Downlodonappstore.png" alt="Download on the App Store" class="app-store-button">
+                    <img src="../Downlodonappstore.png" alt="Download Kanabloom on the App Store" class="app-store-button">
                 </a>
             </div>
         </nav>
     </header>
 
     <main class="blog-container">
-        <h1>Kanabloom Blog</h1>
-        <p class="blog-intro">Discover tips, tricks, and insights about learning Japanese with Kanabloom.</p>
+        <h1>Kanabloom Blog: Learn Japanese Tips</h1>
+        <p class="blog-intro">Discover tips, tricks, and guides for learning Japanese, including how to effectively use Hiragana and Katakana flashcards with Kanabloom.</p>
         
         <div class="blog-posts" id="blog-posts">
             <!-- Blog posts will be loaded here dynamically -->
@@ -60,11 +78,13 @@
             <div class="footer-links">
                 <a href="../index.html">Home</a>
                 <span class="footer-separator">|</span>
+                <a href="index.html">Blog</a>
+                <span class="footer-separator">|</span>
                 <a href="../privacy-policy.html">Privacy Policy</a>
                 <span class="footer-separator">|</span>
                 <a href="../terms.html">Terms of Use</a>
             </div>
-            <p class="copyright">© 2024 Kanabloom. All rights reserved.</p>
+            <p class="copyright">© 2024 Kanabloom. Learn Hiragana & Katakana. All rights reserved.</p>
         </div>
     </footer>
 
