@@ -11,6 +11,14 @@ function loadBlogPosts() {
     // List of actual blog posts that exist
     const posts = [
         {
+            id: 'hiragana-stroke-order',
+            title: 'Master Hiragana Stroke Order: Write Japanese Characters Correctly',
+            excerpt: 'Learn why proper stroke order matters and get tips for writing Hiragana characters correctly. Essential guide for Japanese learners.',
+            date: '2024-04-11',
+            category: 'Writing Tips',
+            image: '../images/blog/hiragana-stroke-order.png'
+        },
+        {
             id: 'learn-hiragana-fast',
             title: '5 Tips to Learn Hiragana Faster',
             excerpt: 'Learn Hiragana faster with 5 effective tips. Improve your Japanese writing skills using proven strategies and flashcards.',
@@ -48,7 +56,7 @@ function loadBlogPosts() {
             excerpt: 'Learn Japanese faster and retain more using Spaced Repetition Systems (SRS) for Hiragana, Katakana, and vocabulary flashcards.',
             date: '2024-04-08',
             category: 'Study Tips',
-            image: '../images/blog/spaced-repetition.png'
+            image: '../images/blog/japanese-study-schedule.png'
         },
         {
             id: 'hiragana-mistakes',
