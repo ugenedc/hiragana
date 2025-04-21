@@ -39,13 +39,20 @@ class CherryBlossomAnimation {
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
         this.container = document.getElementById('cherryBlossoms');
-        this.container.appendChild(this.canvas);
         
+        if (!this.container) {
+            console.warn('Cherry blossoms container not found');
+            return;
+        }
+        
+        this.container.appendChild(this.canvas);
         this.blossoms = [];
-        this.maxBlossoms = 40;
+        this.maxBlossoms = 30;
         this.images = [];
         this.animationFrame = null;
         this.isVisible = true;
+        this.loadedImages = 0;
+        this.requiredImages = 15; // Minimum number of images needed to start
         
         this.loadImages();
         this.resize();
@@ -55,7 +62,6 @@ class CherryBlossomAnimation {
     setupEventListeners() {
         window.addEventListener('resize', () => this.resize());
         
-        // Handle visibility change
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
                 this.pause();
@@ -64,7 +70,6 @@ class CherryBlossomAnimation {
             }
         });
 
-        // Handle scroll
         let scrollTimeout;
         window.addEventListener('scroll', () => {
             if (scrollTimeout) {
@@ -80,6 +85,8 @@ class CherryBlossomAnimation {
     }
     
     checkVisibility() {
+        if (!this.container) return;
+        
         const rect = this.container.getBoundingClientRect();
         const isVisible = (
             rect.top < window.innerHeight &&
@@ -98,15 +105,17 @@ class CherryBlossomAnimation {
     
     loadImages() {
         const totalPetals = 30;
-        let loadedImages = 0;
         
         for (let i = 1; i <= totalPetals; i++) {
             const img = new Image();
             img.onload = () => {
-                loadedImages++;
-                if (loadedImages >= 15) {
+                this.loadedImages++;
+                if (this.loadedImages >= this.requiredImages) {
                     this.start();
                 }
+            };
+            img.onerror = (err) => {
+                console.warn(`Failed to load petal${i}.svg:`, err);
             };
             img.src = `images/petals/petal${i}.svg`;
             this.images.push(img);
@@ -135,6 +144,8 @@ class CherryBlossomAnimation {
     }
     
     resize() {
+        if (!this.container) return;
+        
         this.canvas.width = this.container.offsetWidth;
         this.canvas.height = this.container.offsetHeight;
     }
@@ -142,11 +153,15 @@ class CherryBlossomAnimation {
     addNewBlossoms() {
         if (this.blossoms.length < this.maxBlossoms && Math.random() > 0.95) {
             const randomImage = this.images[Math.floor(Math.random() * this.images.length)];
-            this.blossoms.push(new CherryBlossom(randomImage));
+            if (randomImage.complete) {
+                this.blossoms.push(new CherryBlossom(randomImage));
+            }
         }
     }
     
     animate() {
+        if (!this.ctx || !this.canvas) return;
+        
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
         this.addNewBlossoms();
@@ -163,6 +178,6 @@ class CherryBlossomAnimation {
 }
 
 // Start the animation when the page loads
-window.addEventListener('load', () => {
+document.addEventListener('DOMContentLoaded', () => {
     new CherryBlossomAnimation();
 }); 
