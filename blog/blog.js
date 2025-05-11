@@ -11,6 +11,30 @@ function loadBlogPosts() {
     // List of actual blog posts that exist
     const posts = [
         {
+            id: 'japanese-grammar-tips',
+            title: 'Essential Japanese Grammar Tips for Beginners',
+            excerpt: 'Master basic Japanese grammar with these essential tips. Learn about particles, verb conjugation, and sentence structure to build a strong foundation.',
+            date: '2024-04-12',
+            category: 'Grammar',
+            image: '../images/blog/japanese-grammar-tips.png'
+        },
+        {
+            id: 'japanese-kanji-basics',
+            title: 'Japanese Kanji Basics: A Beginner\'s Guide',
+            excerpt: 'Start your Kanji journey with this beginner-friendly guide. Learn about radicals, stroke order, and effective methods for memorizing Kanji characters.',
+            date: '2024-04-12',
+            category: 'Kanji',
+            image: '../images/blog/japanese-kanji-basics.png'
+        },
+        {
+            id: 'spaced-repetition',
+            title: 'Master Japanese with Spaced Repetition (SRS)',
+            excerpt: 'Learn Japanese faster and retain more using Spaced Repetition Systems (SRS) for Hiragana, Katakana, and vocabulary flashcards.',
+            date: '2024-04-12',
+            category: 'Study Tips',
+            image: '../images/blog/spaced-repetition.png'
+        },
+        {
             id: 'hiragana-stroke-order',
             title: 'Master Hiragana Stroke Order: Write Japanese Characters Correctly',
             excerpt: 'Learn why proper stroke order matters and get tips for writing Hiragana characters correctly. Essential guide for Japanese learners.',
@@ -49,14 +73,6 @@ function loadBlogPosts() {
             date: '2024-04-08',
             category: 'Learning Tips',
             image: '../images/blog/katakana-hiragana.png'
-        },
-        {
-            id: 'spaced-repetition',
-            title: 'Master Japanese with Spaced Repetition (SRS)',
-            excerpt: 'Learn Japanese faster and retain more using Spaced Repetition Systems (SRS) for Hiragana, Katakana, and vocabulary flashcards.',
-            date: '2024-04-08',
-            category: 'Study Tips',
-            image: '../images/blog/japanese-study-schedule.png'
         },
         {
             id: 'hiragana-mistakes',
@@ -121,30 +137,6 @@ function loadBlogPosts() {
             date: '2024-04-11',
             category: 'Learning Order',
             image: '../images/blog/hiragana-before-katakana.png'
-        },
-        {
-            id: 'japanese-grammar-tips',
-            title: 'Essential Japanese Grammar Tips for Beginners',
-            excerpt: 'Master basic Japanese grammar with these essential tips. Learn about particles, verb conjugation, and sentence structure to build a strong foundation.',
-            date: '2024-04-12',
-            category: 'Grammar',
-            image: '../images/blog/japanese-grammar-tips.png'
-        },
-        {
-            id: 'japanese-kanji-basics',
-            title: 'Japanese Kanji Basics: A Beginner\'s Guide',
-            excerpt: 'Start your Kanji journey with this beginner-friendly guide. Learn about radicals, stroke order, and effective methods for memorizing Kanji characters.',
-            date: '2024-04-12',
-            category: 'Kanji',
-            image: '../images/blog/japanese-kanji-basics.png'
-        },
-        {
-            id: 'spaced-repetition',
-            title: 'Master Japanese with Spaced Repetition (SRS)',
-            excerpt: 'Learn Japanese faster and retain more using Spaced Repetition Systems (SRS) for Hiragana, Katakana, and vocabulary flashcards.',
-            date: '2024-04-12',
-            category: 'Study Tips',
-            image: '../images/blog/spaced-repetition.png'
         }
     ];
     
