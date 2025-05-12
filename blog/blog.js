@@ -11,6 +11,30 @@ function loadBlogPosts() {
     // List of actual blog posts that exist
     const posts = [
         {
+            id: 'japanese-greetings-kana',
+            title: 'Essential Japanese Greetings in Hiragana and Katakana',
+            excerpt: 'Master common Japanese greetings using Hiragana and Katakana. Perfect for beginners starting their Japanese language journey.',
+            date: '2024-04-12',
+            category: 'Vocabulary',
+            image: '../images/blog/japanese-greetings-kana.png'
+        },
+        {
+            id: 'japanese-listening-skills',
+            title: 'Improve Your Japanese Listening Skills',
+            excerpt: 'Effective strategies and resources to enhance your Japanese listening comprehension. From beginner to advanced techniques.',
+            date: '2024-04-12',
+            category: 'Study Tips',
+            image: '../images/blog/japanese-listening-skills.png'
+        },
+        {
+            id: 'japanese-writing-practice',
+            title: 'Japanese Writing Practice: Tips and Techniques',
+            excerpt: 'Comprehensive guide to improving your Japanese writing skills. Practice methods for Hiragana, Katakana, and basic Kanji.',
+            date: '2024-04-12',
+            category: 'Writing Tips',
+            image: '../images/blog/japanese-writing-practice.png'
+        },
+        {
             id: 'japanese-grammar-tips',
             title: 'Essential Japanese Grammar Tips for Beginners',
             excerpt: 'Master basic Japanese grammar with these essential tips. Learn about particles, verb conjugation, and sentence structure to build a strong foundation.',
