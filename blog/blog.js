@@ -11,6 +11,30 @@ function loadBlogPosts() {
     // List of actual blog posts that exist
     const posts = [
         {
+            id: 'japanese-pronunciation-guide',
+            title: 'Master Japanese Pronunciation: A Complete Guide for Beginners',
+            excerpt: 'Learn Japanese pronunciation with our comprehensive guide. Master the sounds of Hiragana, Katakana, and essential Japanese words with expert tips and practice exercises.',
+            date: '2024-04-12',
+            category: 'Pronunciation',
+            image: '../images/blog/japanese-pronunciation-guide.png'
+        },
+        {
+            id: 'japanese-vocabulary-building',
+            title: 'Effective Japanese Vocabulary Building: Strategies for Success',
+            excerpt: 'Learn proven strategies for building your Japanese vocabulary. Discover effective methods, essential word lists, and tools to expand your Japanese language skills.',
+            date: '2024-04-12',
+            category: 'Vocabulary',
+            image: '../images/blog/japanese-vocabulary-building.png'
+        },
+        {
+            id: 'japanese-study-motivation',
+            title: 'Stay Motivated: Japanese Study Tips for Long-Term Success',
+            excerpt: 'Discover effective strategies to maintain motivation while learning Japanese. Learn how to overcome plateaus, set achievable goals, and build consistent study habits.',
+            date: '2024-04-12',
+            category: 'Study Tips',
+            image: '../images/blog/japanese-study-motivation.png'
+        },
+        {
             id: 'japanese-greetings-kana',
             title: 'Essential Japanese Greetings in Hiragana and Katakana',
             excerpt: 'Master common Japanese greetings using Hiragana and Katakana. Perfect for beginners starting their Japanese language journey.',
