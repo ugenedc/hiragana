@@ -11,6 +11,38 @@ function loadBlogPosts() {
     // List of actual blog posts that exist
     const posts = [
         {
+            id: 'japanese-mnemonics-benefits',
+            title: 'Unlock Japanese Faster: The Power of Mnemonics',
+            excerpt: 'Discover how mnemonics can significantly speed up your Japanese learning. Tips and examples for using memory aids for Hiragana, Katakana, Kanji, and vocabulary.',
+            date: '2024-04-13',
+            category: 'Learning Techniques',
+            image: '../images/blog/japanese-mnemonics-benefits.png'
+        },
+        {
+            id: 'japanese-study-consistency',
+            title: 'The Key to Japanese Fluency: Study Consistency',
+            excerpt: 'Learn why consistency is crucial for Japanese language acquisition. Tips for building a sustainable study habit and making steady progress towards fluency.',
+            date: '2024-04-13',
+            category: 'Study Habits',
+            image: '../images/blog/japanese-study-consistency.png'
+        },
+        {
+            id: 'japanese-particles-quick-guide',
+            title: 'Japanese Particles Made Easy: A Quick Guide',
+            excerpt: 'A beginner-friendly guide to essential Japanese particles like は, が, を, に, で, と, も. Understand their functions and use them correctly in sentences.',
+            date: '2024-04-13',
+            category: 'Grammar',
+            image: '../images/blog/japanese-particles-quick-guide.png'
+        },
+        {
+            id: 'japanese-study-schedule',
+            title: 'Create Your Perfect Japanese Study Schedule',
+            excerpt: 'Learn how to create an effective Japanese study schedule that fits your lifestyle. Discover time management tips, study session planning, and how to balance different aspects of Japanese learning.',
+            date: '2024-04-12',
+            category: 'Study Tips',
+            image: '../images/blog/japanese-study-schedule.png'
+        },
+        {
             id: 'japanese-pronunciation-guide',
             title: 'Master Japanese Pronunciation: A Complete Guide for Beginners',
             excerpt: 'Learn Japanese pronunciation with our comprehensive guide. Master the sounds of Hiragana, Katakana, and essential Japanese words with expert tips and practice exercises.',
