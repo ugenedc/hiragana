@@ -183,7 +183,7 @@ def call_openai_text(prompt: str) -> str:
         print(f"OpenAI text generation failed: {e}")
         return ''
 
-def call_openai_image(prompt: str, out_path: Path):
+def call_openai_image(prompt: str, out_path: Path, size: str = '1200x630'):
     import requests
     key = os.environ.get('OPENAI_API_KEY')
     if not key:
@@ -196,7 +196,7 @@ def call_openai_image(prompt: str, out_path: Path):
     data = {
         'model': 'gpt-image-1',
         'prompt': f"{prompt}. {style}.",
-        'size': '1200x630',
+        'size': size,
         'n': 1,
         'response_format': 'b64_json'
     }
@@ -368,8 +368,11 @@ def main():
         slug = f"{base_slug}-{today}" if i == 1 else f"{base_slug}-{today}-{i}"
     hero_prompt = f"Blog hero for article '{title}' about Japanese kana learning, cute and relevant illustration"
     image_path = IMAGES_DIR / f'{slug}.png'
+    thumb_path = IMAGES_DIR / f'{slug}-thumb.png'
     try:
-        call_openai_image(hero_prompt, image_path)
+        call_openai_image(hero_prompt, image_path, size='1200x630')
+        # Generate separate thumbnail at smaller size
+        call_openai_image(hero_prompt, thumb_path, size='600x315')
     except Exception as e:
         print(f"Image generation failed: {e}")
         # Ensure the post still has a hero image by copying a fallback
@@ -379,12 +382,15 @@ def main():
             IMAGES_DIR.mkdir(parents=True, exist_ok=True)
             if fallback.exists():
                 copyfile(fallback, image_path)
+                copyfile(fallback, thumb_path)
             else:
                 # Tiny transparent PNG placeholder
                 placeholder = (
                     b'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII='
                 )
                 with open(image_path, 'wb') as f:
+                    f.write(base64.b64decode(placeholder))
+                with open(thumb_path, 'wb') as f:
                     f.write(base64.b64decode(placeholder))
         except Exception as e2:
             print(f"Fallback image copy failed: {e2}")
@@ -398,13 +404,17 @@ def main():
         'keywords': topic_entry.get('keywords','hiragana, katakana, japanese, flashcards, learning'),
         'image': f'../images/blog/{slug}.png'
     }
-    # Always reference the per-post image path for cards
+    # Use hero for OG/template; cards (posts.json) will use the thumbnail
     meta['image'] = f'../images/blog/{slug}.png'
+    thumb_rel = f'../images/blog/{slug}-thumb.png'
     # Generate an excerpt from markdown
     excerpt = re.sub(r'[#>*`\-\[\]]', '', md)
     excerpt = ' '.join(excerpt.split())[:220]
     meta['excerpt'] = excerpt if excerpt else meta['description']
-    append_posts_json(meta)
+    # Write to posts.json using the thumbnail path for cards
+    card_meta = dict(meta)
+    card_meta['image'] = thumb_rel
+    append_posts_json(card_meta)
     html = markdown_to_basic_html(md)
     generate_html_from_template(meta, html)
     update_sitemap_and_feed(slug, title)
