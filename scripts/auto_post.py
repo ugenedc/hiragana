@@ -27,40 +27,71 @@ def slugify(text: str) -> str:
     return text[:80]
 
 def pick_topic():
-    """Pick a topic using trending sources first, fallback to topics.json rotation."""
+    """Ask GPT to propose a unique topic; fallback to trending/configured/random."""
     existing = load_existing_posts()
-    existing_titles = set(p.get('title','').lower() for p in existing)
-    candidates = fetch_trending_candidates()
-    if not candidates:
-        candidates = []
-    # merge with configured topics
+    existing_titles = [p.get('title','') for p in existing if p.get('title')]
+    suggestions = fetch_trending_candidates() or []
+    try:
+        proposed = propose_topic_with_gpt(existing_titles, suggestions)
+        if proposed and proposed.get('topic'):
+            return proposed
+    except Exception as e:
+        print(f"Topic proposal via GPT failed: {e}")
+    # Fallback: merge suggestions and configured, choose random
+    import random
+    pool = []
     configured = json.loads(TOPICS_JSON.read_text()) if TOPICS_JSON.exists() else []
-    for c in configured:
-        # normalize to unified dict
+    for c in suggestions + configured:
         if isinstance(c, dict):
-            candidates.append({'topic': c.get('topic'), 'category': c.get('category','Learning Tips'), 'keywords': c.get('keywords','kana, japanese')})
+            pool.append({'topic': c.get('topic'), 'category': c.get('category','Learning Tips'), 'keywords': c.get('keywords','kana, japanese')})
         else:
-            candidates.append({'topic': str(c), 'category': 'Learning Tips', 'keywords': 'kana, japanese'})
+            pool.append({'topic': str(c), 'category': 'Learning Tips', 'keywords': 'kana, japanese'})
+    pool = [c for c in pool if c.get('topic')]
+    if pool:
+        # Random choice to vary topics
+        return random.choice(pool)
+    return {'topic':'Hiragana stroke order guide','category':'Writing Tips','keywords':'hiragana, stroke order'}
 
-    # filter duplicates vs existing
-    def is_duplicate(t):
-        for et in existing_titles:
-            if similarity(t.lower(), et) > 0.6:
-                return True
-        return False
-
-    filtered = [c for c in candidates if c.get('topic') and not is_duplicate(c['topic'])]
-    if filtered:
-        try:
-            idx = datetime.date.today().toordinal() % len(filtered)
-        except Exception:
-            idx = 0
-        return filtered[idx]
-    # fallback to rotation
-    topics = configured if configured else [{'topic':'Hiragana stroke order guide','category':'Writing Tips','keywords':'hiragana, stroke order'}]
-    idx = datetime.date.today().toordinal() % len(topics)
-    t = topics[idx]
-    return t if isinstance(t, dict) else {'topic': str(t), 'category': 'Learning Tips', 'keywords': 'kana, japanese'}
+def propose_topic_with_gpt(existing_titles: list, suggestions: list):
+    import requests, random
+    key = os.environ.get('OPENAI_API_KEY')
+    if not key:
+        return None
+    url = 'https://api.openai.com/v1/chat/completions'
+    headers = { 'Authorization': f'Bearer {key}', 'Content-Type': 'application/json' }
+    # Build prompt with existing titles to avoid duplication and optional trending suggestions
+    sys_msg = {
+        'role':'system',
+        'content':'You are an expert SEO editor. Propose a unique, high-intent blog topic for beginners learning Japanese kana. Return strict JSON only.'
+    }
+    user_msg = {
+        'role':'user',
+        'content':(
+            "Existing titles to avoid: " + json.dumps(existing_titles[:50]) + "\n" +
+            "Optional trending suggestions: " + json.dumps([s.get('topic') for s in suggestions][:10]) + "\n" +
+            "Return JSON with keys: topic, category, keywords. Category is one of: Learning Tips, Writing Tips, Study Tips, Vocabulary, Grammar. Keywords is a short comma-separated string."
+        )
+    }
+    data = {
+        'model':'gpt-4o-mini',
+        'messages':[sys_msg, user_msg],
+        'temperature':0.9,
+        'max_tokens':200
+    }
+    r = requests.post(url, headers=headers, json=data, timeout=60)
+    r.raise_for_status()
+    text = r.json()['choices'][0]['message']['content']
+    try:
+        obj = json.loads(text)
+        return {
+            'topic': obj.get('topic'),
+            'category': obj.get('category','Learning Tips'),
+            'keywords': obj.get('keywords','hiragana, japanese')
+        }
+    except Exception:
+        # Attempt to extract simple line
+        topic = text.strip().split('\n')[0][:120]
+        return {'topic': topic, 'category':'Learning Tips', 'keywords':'hiragana, japanese'}
 
 def load_existing_posts():
     if POSTS_JSON.exists():
