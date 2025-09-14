@@ -206,23 +206,5 @@
     "date": "2024-04-11",
     "category": "Learning Order",
     "image": "../images/blog/hiragana-before-katakana.png"
-  },
-  {
-    "id": "the-ultimate-hiragana-stroke-order-guide-for-beginners",
-    "title": "The Ultimate Hiragana Stroke Order Guide for Beginners",
-    "description": "Practical tips for hiragana stroke order guide.",
-    "date": "2025-09-14",
-    "category": "Writing Tips",
-    "keywords": "hiragana, stroke order, japanese writing",
-    "image": "../images/blog/hiragana-tips.png"
-  },
-  {
-    "id": "hiragana-stroke-order-guide-mastering-japanese-writing",
-    "title": "Hiragana Stroke Order Guide: Mastering Japanese Writing",
-    "description": "Practical tips for hiragana stroke order guide.",
-    "date": "2025-09-14",
-    "category": "Writing Tips",
-    "keywords": "hiragana, stroke order, japanese writing",
-    "image": "../images/blog/hiragana-tips.png"
   }
 ]
