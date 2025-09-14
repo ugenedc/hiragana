@@ -165,12 +165,24 @@ def call_openai_image(prompt: str, out_path: Path):
         'n': 1,
         'response_format': 'b64_json'
     }
-    r = requests.post(url, headers=headers, json=data, timeout=60)
-    r.raise_for_status()
-    b64 = r.json()['data'][0]['b64_json']
-    IMAGES_DIR.mkdir(parents=True, exist_ok=True)
-    with open(out_path, 'wb') as f:
-        f.write(base64.b64decode(b64))
+    last_err = None
+    for _ in range(2):
+        try:
+            r = requests.post(url, headers=headers, json=data, timeout=60)
+            r.raise_for_status()
+            b64 = r.json()['data'][0]['b64_json']
+            IMAGES_DIR.mkdir(parents=True, exist_ok=True)
+            with open(out_path, 'wb') as f:
+                f.write(base64.b64decode(b64))
+            return
+        except Exception as e:
+            last_err = e
+            try:
+                import time; time.sleep(2)
+            except Exception:
+                pass
+    if last_err:
+        raise last_err
 
 def append_posts_json(meta: dict):
     posts = []
@@ -196,6 +208,9 @@ def generate_html_from_template(meta: dict, content_html: str):
         .replace('[POST_DATE]', datetime.datetime.strptime(meta['date'], '%Y-%m-%d').strftime('%B %d, %Y'))
         .replace('[POST_CATEGORY]', meta['category'])
     )
+    # Ensure featured image filename placeholder is populated
+    image_filename = meta['image'].split('/')[-1] if '/' in meta['image'] else meta['image']
+    html = html.replace('[image-filename]', image_filename)
     # Insert internal links and CTA before replacing loading placeholder
     related = build_related_links(meta)
     internal_links = '<h2>Keep Learning</h2>' + related
