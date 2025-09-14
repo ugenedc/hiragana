@@ -51,7 +51,11 @@ def pick_topic():
 
     filtered = [c for c in candidates if c.get('topic') and not is_duplicate(c['topic'])]
     if filtered:
-        return filtered[0]
+        try:
+            idx = datetime.date.today().toordinal() % len(filtered)
+        except Exception:
+            idx = 0
+        return filtered[idx]
     # fallback to rotation
     topics = configured if configured else [{'topic':'Hiragana stroke order guide','category':'Writing Tips','keywords':'hiragana, stroke order'}]
     idx = datetime.date.today().toordinal() % len(topics)
@@ -337,6 +341,22 @@ def main():
         call_openai_image(hero_prompt, image_path)
     except Exception as e:
         print(f"Image generation failed: {e}")
+        # Ensure the post still has a hero image by copying a fallback
+        try:
+            from shutil import copyfile
+            fallback = IMAGES_DIR / 'hiragana-tips.png'
+            IMAGES_DIR.mkdir(parents=True, exist_ok=True)
+            if fallback.exists():
+                copyfile(fallback, image_path)
+            else:
+                # Tiny transparent PNG placeholder
+                placeholder = (
+                    b'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII='
+                )
+                with open(image_path, 'wb') as f:
+                    f.write(base64.b64decode(placeholder))
+        except Exception as e2:
+            print(f"Fallback image copy failed: {e2}")
     write_markdown(slug, md)
     meta = {
         'id': slug,
@@ -347,9 +367,8 @@ def main():
         'keywords': topic_entry.get('keywords','hiragana, katakana, japanese, flashcards, learning'),
         'image': f'../images/blog/{slug}.png'
     }
-    if not image_path.exists():
-        # Fallback to an existing image so the card doesn't 404
-        meta['image'] = '../images/blog/hiragana-tips.png'
+    # Always reference the per-post image path for cards
+    meta['image'] = f'../images/blog/{slug}.png'
     # Generate an excerpt from markdown
     excerpt = re.sub(r'[#>*`\-\[\]]', '', md)
     excerpt = ' '.join(excerpt.split())[:220]
