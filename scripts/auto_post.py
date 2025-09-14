@@ -27,11 +27,102 @@ def slugify(text: str) -> str:
     return text[:80]
 
 def pick_topic():
-    topics = json.loads(TOPICS_JSON.read_text()) if TOPICS_JSON.exists() else []
-    if not topics:
-        return {'topic': 'Hiragana stroke order guide', 'category': 'Writing Tips', 'keywords': 'hiragana, stroke order'}
+    """Pick a topic using trending sources first, fallback to topics.json rotation."""
+    existing = load_existing_posts()
+    existing_titles = set(p.get('title','').lower() for p in existing)
+    candidates = fetch_trending_candidates()
+    if not candidates:
+        candidates = []
+    # merge with configured topics
+    configured = json.loads(TOPICS_JSON.read_text()) if TOPICS_JSON.exists() else []
+    for c in configured:
+        # normalize to unified dict
+        if isinstance(c, dict):
+            candidates.append({'topic': c.get('topic'), 'category': c.get('category','Learning Tips'), 'keywords': c.get('keywords','kana, japanese')})
+        else:
+            candidates.append({'topic': str(c), 'category': 'Learning Tips', 'keywords': 'kana, japanese'})
+
+    # filter duplicates vs existing
+    def is_duplicate(t):
+        for et in existing_titles:
+            if similarity(t.lower(), et) > 0.6:
+                return True
+        return False
+
+    filtered = [c for c in candidates if c.get('topic') and not is_duplicate(c['topic'])]
+    if filtered:
+        return filtered[0]
+    # fallback to rotation
+    topics = configured if configured else [{'topic':'Hiragana stroke order guide','category':'Writing Tips','keywords':'hiragana, stroke order'}]
     idx = datetime.date.today().toordinal() % len(topics)
-    return topics[idx]
+    t = topics[idx]
+    return t if isinstance(t, dict) else {'topic': str(t), 'category': 'Learning Tips', 'keywords': 'kana, japanese'}
+
+def load_existing_posts():
+    if POSTS_JSON.exists():
+        try:
+            return json.loads(POSTS_JSON.read_text())
+        except Exception:
+            return []
+    return []
+
+def similarity(a: str, b: str) -> float:
+    """Jaccard similarity on word sets."""
+    ta = set(re.findall(r"[a-zA-Z']+", a.lower()))
+    tb = set(re.findall(r"[a-zA-Z']+", b.lower()))
+    if not ta or not tb:
+        return 0.0
+    inter = len(ta & tb)
+    union = len(ta | tb)
+    return inter / union
+
+def fetch_trending_candidates():
+    """Optionally fetch trending titles from public feeds. Best-effort; safe fallbacks."""
+    import requests
+    cands = []
+    headers = {'User-Agent': 'kanabloom-bot/1.0 (+https://hiraganaflashcards.com.au)'}
+    # Tofugu feed (Japanese learning blog)
+    try:
+        r = requests.get('https://www.tofugu.com/feeds/all.xml', headers=headers, timeout=10)
+        if r.ok:
+            import xml.etree.ElementTree as ET
+            root = ET.fromstring(r.text)
+            for item in root.findall('.//item')[:5]:
+                title = (item.findtext('title') or '').strip()
+                if title:
+                    cands.append({'topic': f"What learners can take from: {title}", 'category': 'Trends', 'keywords': 'japanese learning, trends'})
+    except Exception:
+        pass
+    # Reddit r/LearnJapanese (top weekly)
+    try:
+        r = requests.get('https://www.reddit.com/r/LearnJapanese/top/.json?t=week&limit=10', headers=headers, timeout=10)
+        if r.ok:
+            data = r.json()
+            for child in data.get('data',{}).get('children',[])[:5]:
+                t = child.get('data',{}).get('title','').strip()
+                if t:
+                    cands.append({'topic': f"Community Q&A: {t}", 'category': 'Community', 'keywords': 'learn japanese, community'})
+    except Exception:
+        pass
+    # Seasonal awareness based on month
+    month = datetime.date.today().month
+    seasonal = []
+    if month in (11,12,1):
+        seasonal.append({'topic': 'New Year Japanese goals: a 30-day kana plan', 'category':'Study Habits','keywords':'new year goals, kana'})
+    if month in (3,4):
+        seasonal.append({'topic': 'Spring refresh: cherry blossom-themed kana mnemonics', 'category':'Learning Techniques','keywords':'mnemonics, spring'})
+    if month in (6,7,12):
+        seasonal.append({'topic': 'Prep for JLPT: Kana accuracy and speed drills', 'category':'Study Tips','keywords':'jlpt, drills'})
+    cands = seasonal + cands
+    # de-duplicate by topic text
+    seen = set()
+    uniq = []
+    for c in cands:
+        key = c['topic'].lower()
+        if key not in seen:
+            seen.add(key)
+            uniq.append(c)
+    return uniq
 
 def call_openai_text(prompt: str) -> str:
     import requests
@@ -61,9 +152,10 @@ def call_openai_image(prompt: str, out_path: Path):
         sys.exit(1)
     url = 'https://api.openai.com/v1/images'
     headers = { 'Authorization': f'Bearer {key}', 'Content-Type': 'application/json' }
+    style = 'cute kawaii illustration, soft pastel palette, clean vector, minimal background, relevant to Japanese kana learning, no text overlays, friendly character, cherry blossom accents'
     data = {
         'model': 'gpt-image-1',
-        'prompt': prompt + ' minimal, clean, educational app aesthetic, soft pink accents, 1200x630',
+        'prompt': f"{prompt}. {style}.",
         'size': '1200x630',
         'response_format': 'b64_json'
     }
@@ -98,20 +190,33 @@ def generate_html_from_template(meta: dict, content_html: str):
         .replace('[POST_CATEGORY]', meta['category'])
     )
     # Insert internal links and CTA before replacing loading placeholder
-    internal_links = (
-        '<h2>Keep Learning</h2>'
-        '<ul>'
-        '<li><a href="/blog/posts/learn-hiragana-fast.html">Learn Hiragana Fast</a></li>'
-        '<li><a href="/blog/posts/hiragana-stroke-order.html">Hiragana Stroke Order Guide</a></li>'
-        '<li><a href="/blog/posts/spaced-repetition.html">Spaced Repetition for Japanese</a></li>'
-        '</ul>'
-    )
+    related = build_related_links(meta)
+    internal_links = '<h2>Keep Learning</h2>' + related
     cta = (
         '<p><a class="download-btn-black" href="https://apps.apple.com/au/app/kanabloom/id6743828727" target="_blank" rel="noopener">Download Kanabloom Flashcards</a></p>'
     )
     enriched = content_html + internal_links + cta
     html = html.replace('<div class="loading">Loading blog post...</div>', enriched)
     (POSTS_DIR / f"{meta['id']}.html").write_text(html)
+
+def build_related_links(meta: dict) -> str:
+    posts = load_existing_posts()
+    # score by category match and title similarity
+    scored = []
+    for p in posts:
+        if p.get('id') == meta['id']:
+            continue
+        score = 0
+        if p.get('category') == meta.get('category'):
+            score += 1
+        score += similarity(p.get('title',''), meta.get('title',''))
+        scored.append((score, p))
+    scored.sort(key=lambda x: x[0], reverse=True)
+    items = scored[:3]
+    if not items:
+        return ''
+    html = '<ul>' + ''.join(f'<li><a href="/blog/posts/{p[1]["id"]}.html">{p[1]["title"]}</a></li>' for p in items) + '</ul>'
+    return html
 
 def markdown_to_basic_html(md: str) -> str:
     # minimal markdown conversion compatible with our template
@@ -159,7 +264,7 @@ def main():
     m = re.search(r'^#\s+(.+)$', md, flags=re.MULTILINE)
     title = m.group(1).strip() if m else topic.title()
     slug = slugify(title)
-    hero_prompt = f"Blog hero for article '{title}' about Japanese kana learning."
+    hero_prompt = f"Blog hero for article '{title}' about Japanese kana learning, cute and relevant illustration"
     image_path = IMAGES_DIR / f'{slug}.png'
     call_openai_image(hero_prompt, image_path)
     write_markdown(slug, md)
