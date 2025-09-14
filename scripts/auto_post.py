@@ -18,6 +18,7 @@ POSTS_JSON = ROOT / 'blog' / 'posts.json'
 TEMPLATE = POSTS_DIR / 'template.html'
 SITEMAP = ROOT / 'sitemap.xml'
 FEED = ROOT / 'feed.xml'
+TOPICS_JSON = Path(__file__).resolve().parent / 'topics.json'
 
 def slugify(text: str) -> str:
     text = text.lower()
@@ -26,17 +27,9 @@ def slugify(text: str) -> str:
     return text[:80]
 
 def pick_topic():
-    topics = [
-        'Hiragana stroke order guide',
-        'Katakana lookalikes and how to tell them apart',
-        'Beginner Japanese reading drills with kana only',
-        'Spaced repetition for kana mastery',
-        'Common hiragana mistakes and fixes',
-        'Katakana loanwords beginners should learn first',
-        'Daily 15-minute kana study plan',
-        'Mnemonic techniques for kana retention'
-    ]
-    # simple rotation by date
+    topics = json.loads(TOPICS_JSON.read_text()) if TOPICS_JSON.exists() else []
+    if not topics:
+        return {'topic': 'Hiragana stroke order guide', 'category': 'Writing Tips', 'keywords': 'hiragana, stroke order'}
     idx = datetime.date.today().toordinal() % len(topics)
     return topics[idx]
 
@@ -104,7 +97,20 @@ def generate_html_from_template(meta: dict, content_html: str):
         .replace('[POST_DATE]', datetime.datetime.strptime(meta['date'], '%Y-%m-%d').strftime('%B %d, %Y'))
         .replace('[POST_CATEGORY]', meta['category'])
     )
-    html = html.replace('<div class="loading">Loading blog post...</div>', content_html)
+    # Insert internal links and CTA before replacing loading placeholder
+    internal_links = (
+        '<h2>Keep Learning</h2>'
+        '<ul>'
+        '<li><a href="/blog/posts/learn-hiragana-fast.html">Learn Hiragana Fast</a></li>'
+        '<li><a href="/blog/posts/hiragana-stroke-order.html">Hiragana Stroke Order Guide</a></li>'
+        '<li><a href="/blog/posts/spaced-repetition.html">Spaced Repetition for Japanese</a></li>'
+        '</ul>'
+    )
+    cta = (
+        '<p><a class="download-btn-black" href="https://apps.apple.com/au/app/kanabloom/id6743828727" target="_blank" rel="noopener">Download Kanabloom Flashcards</a></p>'
+    )
+    enriched = content_html + internal_links + cta
+    html = html.replace('<div class="loading">Loading blog post...</div>', enriched)
     (POSTS_DIR / f"{meta['id']}.html").write_text(html)
 
 def markdown_to_basic_html(md: str) -> str:
@@ -140,9 +146,14 @@ def update_sitemap_and_feed(slug: str, title: str):
         FEED.write_text(fd)
 
 def main():
-    topic = pick_topic()
+    topic_entry = pick_topic()
+    topic = topic_entry['topic'] if isinstance(topic_entry, dict) else str(topic_entry)
     today = datetime.date.today().strftime('%Y-%m-%d')
-    prompt = f"Write a 900-1200 word SEO blog post about: {topic}. Include headings, short paragraphs, examples, and a small CTA to download the Kanabloom iOS app (with link https://apps.apple.com/au/app/kanabloom/id6743828727). Target beginners learning Japanese kana."
+    prompt = (
+        f"Write a 900-1200 word SEO blog post about: {topic}. "
+        "Include headings, short paragraphs, examples, internal link anchor suggestions, and a small CTA to download the Kanabloom iOS app (with link https://apps.apple.com/au/app/kanabloom/id6743828727). "
+        f"Target beginners learning Japanese kana. Keywords: {topic_entry.get('keywords','hiragana, katakana, japanese')}"
+    )
     md = call_openai_text(prompt)
     # derive title from first H1 or fallback
     m = re.search(r'^#\s+(.+)$', md, flags=re.MULTILINE)
@@ -157,8 +168,8 @@ def main():
         'title': title,
         'description': f'Practical tips for {topic.lower()}.',
         'date': today,
-        'category': 'Learning Tips',
-        'keywords': 'hiragana, katakana, japanese, flashcards, learning',
+        'category': topic_entry.get('category','Learning Tips'),
+        'keywords': topic_entry.get('keywords','hiragana, katakana, japanese, flashcards, learning'),
         'image': f'../images/blog/{slug}.png'
     }
     append_posts_json(meta)
