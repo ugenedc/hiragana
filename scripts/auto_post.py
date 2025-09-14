@@ -140,9 +140,13 @@ def call_openai_text(prompt: str) -> str:
         ],
         'temperature': 0.7
     }
-    r = requests.post(url, headers=headers, json=data, timeout=60)
-    r.raise_for_status()
-    return r.json()['choices'][0]['message']['content']
+    try:
+        r = requests.post(url, headers=headers, json=data, timeout=60)
+        r.raise_for_status()
+        return r.json()['choices'][0]['message']['content']
+    except Exception as e:
+        print(f"OpenAI text generation failed: {e}")
+        return ''
 
 def call_openai_image(prompt: str, out_path: Path):
     import requests
@@ -198,7 +202,13 @@ def generate_html_from_template(meta: dict, content_html: str):
         '<p><a class="download-btn-black" href="https://apps.apple.com/au/app/kanabloom/id6743828727" target="_blank" rel="noopener">Download Kanabloom Flashcards</a></p>'
     )
     enriched = content_html + internal_links + cta
+    # First try direct placeholder replacement
+    before = html
     html = html.replace('<div class="loading">Loading blog post...</div>', enriched)
+    # If not replaced, inject robustly by replacing the inner HTML of the content container
+    if html == before:
+        pattern = r'(<div class="blog-post-content-full"[^>]*>)([\s\S]*?)(</div>)'
+        html = re.sub(pattern, r"\1" + enriched + r"\3", html, count=1)
     (POSTS_DIR / f"{meta['id']}.html").write_text(html)
 
 def build_related_links(meta: dict) -> str:
@@ -222,13 +232,37 @@ def build_related_links(meta: dict) -> str:
 
 def markdown_to_basic_html(md: str) -> str:
     # minimal markdown conversion compatible with our template
-    html = md
+    html = md.strip()
+    if not html:
+        return ''
     html = re.sub(r'^# (.*)$', r'<h1>\1</h1>', html, flags=re.MULTILINE)
     html = re.sub(r'^## (.*)$', r'<h2>\1</h2>', html, flags=re.MULTILINE)
     html = re.sub(r'^### (.*)$', r'<h3>\1</h3>', html, flags=re.MULTILINE)
     html = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', html)
     html = re.sub(r'\*(.*?)\*', r'<em>\1</em>', html)
-    html = '\n'.join(f'<p>{line}</p>' if not re.match(r'^<h[1-3]>', line) and line.strip() else line for line in html.splitlines())
+    # Lists (basic) - convert lines starting with - or * to <li>
+    lines = []
+    in_ul = False
+    for line in html.splitlines():
+        if re.match(r'^\s*[-*]\s+.+', line):
+            if not in_ul:
+                lines.append('<ul>')
+                in_ul = True
+            item = re.sub(r'^\s*[-*]\s+(.*)$', r'<li>\1</li>', line)
+            lines.append(item)
+        else:
+            if in_ul:
+                lines.append('</ul>')
+                in_ul = False
+            lines.append(line)
+    if in_ul:
+        lines.append('</ul>')
+    html = '\n'.join(lines)
+    # Paragraphs for plain lines
+    html = '\n'.join(
+        (f'<p>{line}</p>' if (line.strip() and not re.match(r'^<(/)?(h1|h2|h3|ul|li|img|p)>', line.strip())) else line)
+        for line in html.splitlines()
+    )
     return html
 
 def update_sitemap_and_feed(slug: str, title: str):
@@ -262,6 +296,9 @@ def main():
         f"Target beginners learning Japanese kana. Keywords: {topic_entry.get('keywords','hiragana, katakana, japanese')}"
     )
     md = call_openai_text(prompt)
+    if not md.strip():
+        # Fallback content if API returns empty
+        md = f"# {topic}\n\nHere is a practical guide to {topic.lower()} for beginners.\n\n- What it is and why it matters\n- Step-by-step approach\n- Common mistakes to avoid\n- Quick practice ideas\n\nDownload Kanabloom to practice kana effectively."
     # derive title from first H1 or fallback
     m = re.search(r'^#\s+(.+)$', md, flags=re.MULTILINE)
     title = m.group(1).strip() if m else topic.title()
