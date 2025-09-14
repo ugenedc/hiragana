@@ -8,6 +8,8 @@ on:
 jobs:
   autopost:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -17,8 +19,11 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Python deps (none required)
-        run: python -V
+      - name: Install Python deps
+        run: |
+          python -V
+          python -m pip install --upgrade pip
+          pip install requests
 
       - name: Generate post with OpenAI
         env:
