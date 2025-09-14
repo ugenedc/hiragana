@@ -78,6 +78,12 @@ function loadBlogPost(postId) {
     const blogPostContent = document.querySelector('.blog-post-content-full');
     if (!blogPostContent) return;
     
+    // If server-injected content already exists, don't override it
+    const alreadyHasContent = !blogPostContent.querySelector('.loading');
+    if (alreadyHasContent) {
+        return;
+    }
+    
     // Show loading state
     blogPostContent.innerHTML = '<div class="loading">Loading blog post...</div>';
     
@@ -99,8 +105,11 @@ function loadBlogPost(postId) {
             });
         })
         .catch(error => {
-            console.error('Error loading blog post:', error);
-            blogPostContent.innerHTML = '<p>Sorry, this blog post could not be loaded.</p>';
+            // Keep any server-injected content if available; otherwise show a friendly message
+            if (!alreadyHasContent) {
+                console.error('Error loading blog post:', error);
+                blogPostContent.innerHTML = '<p>Sorry, this blog post could not be loaded.</p>';
+            }
         });
 }
 

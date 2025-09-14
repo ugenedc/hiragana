@@ -293,9 +293,14 @@ def main():
     topic = topic_entry['topic'] if isinstance(topic_entry, dict) else str(topic_entry)
     today = datetime.date.today().strftime('%Y-%m-%d')
     prompt = (
-        f"Write a 900-1200 word SEO blog post about: {topic}. "
-        "Include headings, short paragraphs, examples, internal link anchor suggestions, and a small CTA to download the Kanabloom iOS app (with link https://apps.apple.com/au/app/kanabloom/id6743828727). "
-        f"Target beginners learning Japanese kana. Keywords: {topic_entry.get('keywords','hiragana, katakana, japanese')}"
+        "You are a senior SEO content writer. Create a 1000-1300 word ORIGINAL post for Kanabloom's blog.\n"
+        f"Topic focus: {topic}.\n"
+        "Requirements: include H2/H3 headings, an intro, skimmable paragraphs (max 3-4 sentences each), bullet lists, and a short conclusion.\n"
+        "Avoid generic fluff. Provide practical steps, examples, and a short practice section with kana-focused exercises.\n"
+        "Write for beginners learning Japanese kana (Hiragana/Katakana). Use simple English.\n"
+        "Add 3-5 suggested internal link anchor texts (do not insert actual links).\n"
+        "End with a one-line CTA to download Kanabloom with the text 'Download Kanabloom on iOS' (no URL).\n"
+        f"Primary keywords: {topic_entry.get('keywords','hiragana, katakana, japanese')}."
     )
     md = call_openai_text(prompt)
     if not md.strip():
