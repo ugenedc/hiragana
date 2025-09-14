@@ -176,7 +176,8 @@ def append_posts_json(meta: dict):
     posts = []
     if POSTS_JSON.exists():
         posts = json.loads(POSTS_JSON.read_text())
-    posts = [p for p in posts if p['id'] != meta['id']]
+    # remove any existing with same id, keep only one
+    posts = [p for p in posts if p.get('id') != meta['id']]
     posts.append(meta)
     POSTS_JSON.write_text(json.dumps(posts, ensure_ascii=False, indent=2))
 
@@ -302,7 +303,13 @@ def main():
     # derive title from first H1 or fallback
     m = re.search(r'^#\s+(.+)$', md, flags=re.MULTILINE)
     title = m.group(1).strip() if m else topic.title()
-    slug = slugify(title)
+    base_slug = slugify(title)
+    slug = base_slug
+    # Ensure uniqueness; if exists, add date suffix
+    i = 0
+    while (POSTS_DIR / f'{slug}.html').exists() or (POSTS_DIR / f'{slug}.md').exists():
+        i += 1
+        slug = f"{base_slug}-{today}" if i == 1 else f"{base_slug}-{today}-{i}"
     hero_prompt = f"Blog hero for article '{title}' about Japanese kana learning, cute and relevant illustration"
     image_path = IMAGES_DIR / f'{slug}.png'
     try:
@@ -322,6 +329,10 @@ def main():
     if not image_path.exists():
         # Fallback to an existing image so the card doesn't 404
         meta['image'] = '../images/blog/hiragana-tips.png'
+    # Generate an excerpt from markdown
+    excerpt = re.sub(r'[#>*`\-\[\]]', '', md)
+    excerpt = ' '.join(excerpt.split())[:220]
+    meta['excerpt'] = excerpt if excerpt else meta['description']
     append_posts_json(meta)
     html = markdown_to_basic_html(md)
     generate_html_from_template(meta, html)

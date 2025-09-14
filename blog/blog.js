@@ -9,6 +9,17 @@ function loadBlogPosts() {
     fetch('posts.json')
       .then(r => r.json())
       .then(posts => {
+        // Deduplicate by id, keep latest date
+        const map = new Map();
+        posts.forEach(p => {
+            const key = p.id;
+            if (!map.has(key)) map.set(key, p);
+            else {
+                const a = map.get(key);
+                if (new Date(p.date) > new Date(a.date)) map.set(key, p);
+            }
+        });
+        posts = Array.from(map.values());
     posts.sort((a, b) => new Date(b.date) - new Date(a.date));
     const fragment = document.createDocumentFragment();
         posts.forEach(post => fragment.appendChild(createBlogPostCard(post)));
