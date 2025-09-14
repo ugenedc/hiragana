@@ -150,13 +150,15 @@ def call_openai_image(prompt: str, out_path: Path):
     if not key:
         print('OPENAI_API_KEY is not set', file=sys.stderr)
         sys.exit(1)
-    url = 'https://api.openai.com/v1/images'
+    # Generate image using the correct generations endpoint
+    url = 'https://api.openai.com/v1/images/generations'
     headers = { 'Authorization': f'Bearer {key}', 'Content-Type': 'application/json' }
     style = 'cute kawaii illustration, soft pastel palette, clean vector, minimal background, relevant to Japanese kana learning, no text overlays, friendly character, cherry blossom accents'
     data = {
         'model': 'gpt-image-1',
         'prompt': f"{prompt}. {style}.",
         'size': '1200x630',
+        'n': 1,
         'response_format': 'b64_json'
     }
     r = requests.post(url, headers=headers, json=data, timeout=60)
@@ -266,7 +268,10 @@ def main():
     slug = slugify(title)
     hero_prompt = f"Blog hero for article '{title}' about Japanese kana learning, cute and relevant illustration"
     image_path = IMAGES_DIR / f'{slug}.png'
-    call_openai_image(hero_prompt, image_path)
+    try:
+        call_openai_image(hero_prompt, image_path)
+    except Exception as e:
+        print(f"Image generation failed: {e}")
     write_markdown(slug, md)
     meta = {
         'id': slug,
@@ -277,6 +282,9 @@ def main():
         'keywords': topic_entry.get('keywords','hiragana, katakana, japanese, flashcards, learning'),
         'image': f'../images/blog/{slug}.png'
     }
+    if not image_path.exists():
+        # Fallback to an existing image so the card doesn't 404
+        meta['image'] = '../images/blog/hiragana-tips.png'
     append_posts_json(meta)
     html = markdown_to_basic_html(md)
     generate_html_from_template(meta, html)
