@@ -1,28 +1,219 @@
 [
-  {"id":"japanese-mnemonics-benefits","title":"Unlock Japanese Faster: The Power of Mnemonics","excerpt":"Discover how mnemonics can significantly speed up your Japanese learning. Tips and examples for using memory aids for Hiragana, Katakana, Kanji, and vocabulary.","date":"2024-04-13","category":"Learning Techniques","image":"../images/blog/japanese-mnemonics-benefits.png"},
-  {"id":"japanese-study-consistency","title":"The Key to Japanese Fluency: Study Consistency","excerpt":"Learn why consistency is crucial for Japanese language acquisition. Tips for building a sustainable study habit and making steady progress towards fluency.","date":"2024-04-13","category":"Study Habits","image":"../images/blog/japanese-study-consistency.png"},
-  {"id":"japanese-particles-quick-guide","title":"Japanese Particles Made Easy: A Quick Guide","excerpt":"A beginner-friendly guide to essential Japanese particles like は, が, を, に, で, と, も. Understand their functions and use them correctly in sentences.","date":"2024-04-13","category":"Grammar","image":"../images/blog/japanese-particles-quick-guide.png"},
-  {"id":"japanese-study-schedule","title":"Create Your Perfect Japanese Study Schedule","excerpt":"Learn how to create an effective Japanese study schedule that fits your lifestyle. Discover time management tips, study session planning, and how to balance different aspects of Japanese learning.","date":"2024-04-12","category":"Study Tips","image":"../images/blog/japanese-study-schedule.png"},
-  {"id":"japanese-pronunciation-guide","title":"Master Japanese Pronunciation: A Complete Guide for Beginners","excerpt":"Learn Japanese pronunciation with our comprehensive guide. Master the sounds of Hiragana, Katakana, and essential Japanese words with expert tips and practice exercises.","date":"2024-04-12","category":"Pronunciation","image":"../images/blog/japanese-pronunciation-guide.png"},
-  {"id":"japanese-vocabulary-building","title":"Effective Japanese Vocabulary Building: Strategies for Success","excerpt":"Learn proven strategies for building your Japanese vocabulary. Discover effective methods, essential word lists, and tools to expand your Japanese language skills.","date":"2024-04-12","category":"Vocabulary","image":"../images/blog/japanese-vocabulary-building.png"},
-  {"id":"japanese-study-motivation","title":"Stay Motivated: Japanese Study Tips for Long-Term Success","excerpt":"Discover effective strategies to maintain motivation while learning Japanese. Learn how to overcome plateaus, set achievable goals, and build consistent study habits.","date":"2024-04-12","category":"Study Tips","image":"../images/blog/japanese-study-motivation.png"},
-  {"id":"japanese-greetings-kana","title":"Essential Japanese Greetings in Hiragana and Katakana","excerpt":"Master common Japanese greetings using Hiragana and Katakana. Perfect for beginners starting their Japanese language journey.","date":"2024-04-12","category":"Vocabulary","image":"../images/blog/japanese-greetings-kana.png"},
-  {"id":"japanese-listening-skills","title":"Improve Your Japanese Listening Skills","excerpt":"Effective strategies and resources to enhance your Japanese listening comprehension. From beginner to advanced techniques.","date":"2024-04-12","category":"Study Tips","image":"../images/blog/japanese-listening-skills.png"},
-  {"id":"japanese-writing-practice","title":"Japanese Writing Practice: Tips and Techniques","excerpt":"Comprehensive guide to improving your Japanese writing skills. Practice methods for Hiragana, Katakana, and basic Kanji.","date":"2024-04-12","category":"Writing Tips","image":"../images/blog/japanese-writing-practice.png"},
-  {"id":"japanese-grammar-tips","title":"Essential Japanese Grammar Tips for Beginners","excerpt":"Master basic Japanese grammar with these essential tips. Learn about particles, verb conjugation, and sentence structure to build a strong foundation.","date":"2024-04-12","category":"Grammar","image":"../images/blog/japanese-grammar-tips.png"},
-  {"id":"japanese-kanji-basics","title":"Japanese Kanji Basics: A Beginner's Guide","excerpt":"Start your Kanji journey with this beginner-friendly guide. Learn about radicals, stroke order, and effective methods for memorizing Kanji characters.","date":"2024-04-12","category":"Kanji","image":"../images/blog/japanese-kanji-basics.png"},
-  {"id":"spaced-repetition","title":"Master Japanese with Spaced Repetition (SRS)","excerpt":"Learn Japanese faster and retain more using Spaced Repetition Systems (SRS) for Hiragana, Katakana, and vocabulary flashcards.","date":"2024-04-12","category":"Study Tips","image":"../images/blog/spaced-repetition.png"},
-  {"id":"hiragana-stroke-order","title":"Master Hiragana Stroke Order: Write Japanese Characters Correctly","excerpt":"Learn why proper stroke order matters and get tips for writing Hiragana characters correctly. Essential guide for Japanese learners.","date":"2024-04-11","category":"Writing Tips","image":"../images/blog/hiragana-stroke-order.png"},
-  {"id":"learn-hiragana-fast","title":"5 Tips to Learn Hiragana Faster","excerpt":"Learn Hiragana faster with 5 effective tips. Improve your Japanese writing skills using proven strategies and flashcards.","date":"2024-04-08","category":"Learning Tips","image":"../images/blog/hiragana-tips.png"},
-  {"id":"morning-study-routine","title":"Create Your Perfect Morning Japanese Study Routine","excerpt":"Design the perfect morning study routine to learn Japanese effectively. Tips for consistency, focus, and using flashcards.","date":"2024-04-08","category":"Study Habits","image":"../images/blog/woman-with-coffee.png"},
-  {"id":"study-anywhere","title":"Study Japanese Anywhere: Tips for Learning While Traveling","excerpt":"Learn Japanese anywhere! Discover practical tips and tools, like flashcard apps, to continue your studies while traveling.","date":"2024-04-08","category":"Study Tips","image":"../images/blog/man-on-plane.png"},
-  {"id":"hiragana-vs-katakana","title":"Hiragana vs Katakana: Understanding the Differences","excerpt":"Learn the key differences between Hiragana and Katakana, the two essential Japanese writing systems, and when to use each.","date":"2024-04-08","category":"Learning Tips","image":"../images/blog/katakana-hiragana.png"},
-  {"id":"hiragana-mistakes","title":"Common Mistakes to Avoid When Learning Hiragana","excerpt":"Learning Hiragana? Avoid common mistakes like mixing similar characters and relying too much on Romaji. Improve your study!","date":"2024-04-11","category":"Learning Tips","image":"../images/blog/hiragana-mistakes.png"},
-  {"id":"katakana-practice-tips","title":"Katakana Practice: Tips for Mastering Angular Characters","excerpt":"Master Katakana with practice tips! Differentiate similar characters, practice writing angular strokes, and use Katakana flashcards.","date":"2024-04-11","category":"Learning Tips","image":"../images/blog/katakana-practice-tips.png"},
-  {"id":"creative-japanese-learning","title":"Beyond Flashcards: Creative Ways to Learn Japanese Characters","excerpt":"Go beyond flashcards! Discover creative ways to learn Japanese characters like Hiragana and Katakana, including manga, music, and games.","date":"2024-04-11","category":"Study Methods","image":"../images/blog/creative-japanese-learning.png"},
-  {"id":"hiragana-learning-time","title":"How Long Does It Really Take to Learn Hiragana?","excerpt":"How long does it take to learn Hiragana? Explore realistic timelines, factors affecting learning speed, and tips for mastering the characters efficiently.","date":"2024-04-11","category":"Learning Tips","image":"../images/blog/hiragana-learning-time.png"},
-  {"id":"katakana-vs-kanji","title":"Katakana vs Kanji: What's the Difference?","excerpt":"Confused about Katakana vs Kanji? Learn the crucial differences between these Japanese writing systems, including their origins, uses, and appearances.","date":"2024-04-11","category":"Japanese Writing","image":"../images/blog/katakana-vs-kanji.png"},
-  {"id":"effective-japanese-flashcards","title":"Making Japanese Flashcards That Actually Work","excerpt":"Learn how to create effective Japanese flashcards for Hiragana, Katakana, and vocabulary. Tips for design, content, and using SRS for best results.","date":"2024-04-11","category":"Study Tools","image":"../images/blog/effective-japanese-flashcards.png"},
-  {"id":"japanese-reading-practice","title":"Reading Practice for Japanese Beginners (Hiragana & Katakana)","excerpt":"Start reading Japanese! Find easy reading practice resources and tips for beginners focusing on Hiragana and Katakana characters.","date":"2024-04-11","category":"Reading Practice","image":"../images/blog/japanese-reading-practice.png"},
-  {"id":"hiragana-before-katakana","title":"Why You Should Learn Hiragana Before Katakana","excerpt":"Why learn Hiragana before Katakana? Understand the standard Japanese learning order and the benefits of mastering Hiragana first.","date":"2024-04-11","category":"Learning Order","image":"../images/blog/hiragana-before-katakana.png"}
+  {
+    "id": "japanese-mnemonics-benefits",
+    "title": "Unlock Japanese Faster: The Power of Mnemonics",
+    "excerpt": "Discover how mnemonics can significantly speed up your Japanese learning. Tips and examples for using memory aids for Hiragana, Katakana, Kanji, and vocabulary.",
+    "date": "2024-04-13",
+    "category": "Learning Techniques",
+    "image": "../images/blog/japanese-mnemonics-benefits.png"
+  },
+  {
+    "id": "japanese-study-consistency",
+    "title": "The Key to Japanese Fluency: Study Consistency",
+    "excerpt": "Learn why consistency is crucial for Japanese language acquisition. Tips for building a sustainable study habit and making steady progress towards fluency.",
+    "date": "2024-04-13",
+    "category": "Study Habits",
+    "image": "../images/blog/japanese-study-consistency.png"
+  },
+  {
+    "id": "japanese-particles-quick-guide",
+    "title": "Japanese Particles Made Easy: A Quick Guide",
+    "excerpt": "A beginner-friendly guide to essential Japanese particles like は, が, を, に, で, と, も. Understand their functions and use them correctly in sentences.",
+    "date": "2024-04-13",
+    "category": "Grammar",
+    "image": "../images/blog/japanese-particles-quick-guide.png"
+  },
+  {
+    "id": "japanese-study-schedule",
+    "title": "Create Your Perfect Japanese Study Schedule",
+    "excerpt": "Learn how to create an effective Japanese study schedule that fits your lifestyle. Discover time management tips, study session planning, and how to balance different aspects of Japanese learning.",
+    "date": "2024-04-12",
+    "category": "Study Tips",
+    "image": "../images/blog/japanese-study-schedule.png"
+  },
+  {
+    "id": "japanese-pronunciation-guide",
+    "title": "Master Japanese Pronunciation: A Complete Guide for Beginners",
+    "excerpt": "Learn Japanese pronunciation with our comprehensive guide. Master the sounds of Hiragana, Katakana, and essential Japanese words with expert tips and practice exercises.",
+    "date": "2024-04-12",
+    "category": "Pronunciation",
+    "image": "../images/blog/japanese-pronunciation-guide.png"
+  },
+  {
+    "id": "japanese-vocabulary-building",
+    "title": "Effective Japanese Vocabulary Building: Strategies for Success",
+    "excerpt": "Learn proven strategies for building your Japanese vocabulary. Discover effective methods, essential word lists, and tools to expand your Japanese language skills.",
+    "date": "2024-04-12",
+    "category": "Vocabulary",
+    "image": "../images/blog/japanese-vocabulary-building.png"
+  },
+  {
+    "id": "japanese-study-motivation",
+    "title": "Stay Motivated: Japanese Study Tips for Long-Term Success",
+    "excerpt": "Discover effective strategies to maintain motivation while learning Japanese. Learn how to overcome plateaus, set achievable goals, and build consistent study habits.",
+    "date": "2024-04-12",
+    "category": "Study Tips",
+    "image": "../images/blog/japanese-study-motivation.png"
+  },
+  {
+    "id": "japanese-greetings-kana",
+    "title": "Essential Japanese Greetings in Hiragana and Katakana",
+    "excerpt": "Master common Japanese greetings using Hiragana and Katakana. Perfect for beginners starting their Japanese language journey.",
+    "date": "2024-04-12",
+    "category": "Vocabulary",
+    "image": "../images/blog/japanese-greetings-kana.png"
+  },
+  {
+    "id": "japanese-listening-skills",
+    "title": "Improve Your Japanese Listening Skills",
+    "excerpt": "Effective strategies and resources to enhance your Japanese listening comprehension. From beginner to advanced techniques.",
+    "date": "2024-04-12",
+    "category": "Study Tips",
+    "image": "../images/blog/japanese-listening-skills.png"
+  },
+  {
+    "id": "japanese-writing-practice",
+    "title": "Japanese Writing Practice: Tips and Techniques",
+    "excerpt": "Comprehensive guide to improving your Japanese writing skills. Practice methods for Hiragana, Katakana, and basic Kanji.",
+    "date": "2024-04-12",
+    "category": "Writing Tips",
+    "image": "../images/blog/japanese-writing-practice.png"
+  },
+  {
+    "id": "japanese-grammar-tips",
+    "title": "Essential Japanese Grammar Tips for Beginners",
+    "excerpt": "Master basic Japanese grammar with these essential tips. Learn about particles, verb conjugation, and sentence structure to build a strong foundation.",
+    "date": "2024-04-12",
+    "category": "Grammar",
+    "image": "../images/blog/japanese-grammar-tips.png"
+  },
+  {
+    "id": "japanese-kanji-basics",
+    "title": "Japanese Kanji Basics: A Beginner's Guide",
+    "excerpt": "Start your Kanji journey with this beginner-friendly guide. Learn about radicals, stroke order, and effective methods for memorizing Kanji characters.",
+    "date": "2024-04-12",
+    "category": "Kanji",
+    "image": "../images/blog/japanese-kanji-basics.png"
+  },
+  {
+    "id": "spaced-repetition",
+    "title": "Master Japanese with Spaced Repetition (SRS)",
+    "excerpt": "Learn Japanese faster and retain more using Spaced Repetition Systems (SRS) for Hiragana, Katakana, and vocabulary flashcards.",
+    "date": "2024-04-12",
+    "category": "Study Tips",
+    "image": "../images/blog/spaced-repetition.png"
+  },
+  {
+    "id": "hiragana-stroke-order",
+    "title": "Master Hiragana Stroke Order: Write Japanese Characters Correctly",
+    "excerpt": "Learn why proper stroke order matters and get tips for writing Hiragana characters correctly. Essential guide for Japanese learners.",
+    "date": "2024-04-11",
+    "category": "Writing Tips",
+    "image": "../images/blog/hiragana-stroke-order.png"
+  },
+  {
+    "id": "learn-hiragana-fast",
+    "title": "5 Tips to Learn Hiragana Faster",
+    "excerpt": "Learn Hiragana faster with 5 effective tips. Improve your Japanese writing skills using proven strategies and flashcards.",
+    "date": "2024-04-08",
+    "category": "Learning Tips",
+    "image": "../images/blog/hiragana-tips.png"
+  },
+  {
+    "id": "morning-study-routine",
+    "title": "Create Your Perfect Morning Japanese Study Routine",
+    "excerpt": "Design the perfect morning study routine to learn Japanese effectively. Tips for consistency, focus, and using flashcards.",
+    "date": "2024-04-08",
+    "category": "Study Habits",
+    "image": "../images/blog/woman-with-coffee.png"
+  },
+  {
+    "id": "study-anywhere",
+    "title": "Study Japanese Anywhere: Tips for Learning While Traveling",
+    "excerpt": "Learn Japanese anywhere! Discover practical tips and tools, like flashcard apps, to continue your studies while traveling.",
+    "date": "2024-04-08",
+    "category": "Study Tips",
+    "image": "../images/blog/man-on-plane.png"
+  },
+  {
+    "id": "hiragana-vs-katakana",
+    "title": "Hiragana vs Katakana: Understanding the Differences",
+    "excerpt": "Learn the key differences between Hiragana and Katakana, the two essential Japanese writing systems, and when to use each.",
+    "date": "2024-04-08",
+    "category": "Learning Tips",
+    "image": "../images/blog/katakana-hiragana.png"
+  },
+  {
+    "id": "hiragana-mistakes",
+    "title": "Common Mistakes to Avoid When Learning Hiragana",
+    "excerpt": "Learning Hiragana? Avoid common mistakes like mixing similar characters and relying too much on Romaji. Improve your study!",
+    "date": "2024-04-11",
+    "category": "Learning Tips",
+    "image": "../images/blog/hiragana-mistakes.png"
+  },
+  {
+    "id": "katakana-practice-tips",
+    "title": "Katakana Practice: Tips for Mastering Angular Characters",
+    "excerpt": "Master Katakana with practice tips! Differentiate similar characters, practice writing angular strokes, and use Katakana flashcards.",
+    "date": "2024-04-11",
+    "category": "Learning Tips",
+    "image": "../images/blog/katakana-practice-tips.png"
+  },
+  {
+    "id": "creative-japanese-learning",
+    "title": "Beyond Flashcards: Creative Ways to Learn Japanese Characters",
+    "excerpt": "Go beyond flashcards! Discover creative ways to learn Japanese characters like Hiragana and Katakana, including manga, music, and games.",
+    "date": "2024-04-11",
+    "category": "Study Methods",
+    "image": "../images/blog/creative-japanese-learning.png"
+  },
+  {
+    "id": "hiragana-learning-time",
+    "title": "How Long Does It Really Take to Learn Hiragana?",
+    "excerpt": "How long does it take to learn Hiragana? Explore realistic timelines, factors affecting learning speed, and tips for mastering the characters efficiently.",
+    "date": "2024-04-11",
+    "category": "Learning Tips",
+    "image": "../images/blog/hiragana-learning-time.png"
+  },
+  {
+    "id": "katakana-vs-kanji",
+    "title": "Katakana vs Kanji: What's the Difference?",
+    "excerpt": "Confused about Katakana vs Kanji? Learn the crucial differences between these Japanese writing systems, including their origins, uses, and appearances.",
+    "date": "2024-04-11",
+    "category": "Japanese Writing",
+    "image": "../images/blog/katakana-vs-kanji.png"
+  },
+  {
+    "id": "effective-japanese-flashcards",
+    "title": "Making Japanese Flashcards That Actually Work",
+    "excerpt": "Learn how to create effective Japanese flashcards for Hiragana, Katakana, and vocabulary. Tips for design, content, and using SRS for best results.",
+    "date": "2024-04-11",
+    "category": "Study Tools",
+    "image": "../images/blog/effective-japanese-flashcards.png"
+  },
+  {
+    "id": "japanese-reading-practice",
+    "title": "Reading Practice for Japanese Beginners (Hiragana & Katakana)",
+    "excerpt": "Start reading Japanese! Find easy reading practice resources and tips for beginners focusing on Hiragana and Katakana characters.",
+    "date": "2024-04-11",
+    "category": "Reading Practice",
+    "image": "../images/blog/japanese-reading-practice.png"
+  },
+  {
+    "id": "hiragana-before-katakana",
+    "title": "Why You Should Learn Hiragana Before Katakana",
+    "excerpt": "Why learn Hiragana before Katakana? Understand the standard Japanese learning order and the benefits of mastering Hiragana first.",
+    "date": "2024-04-11",
+    "category": "Learning Order",
+    "image": "../images/blog/hiragana-before-katakana.png"
+  },
+  {
+    "id": "the-ultimate-hiragana-stroke-order-guide-for-beginners",
+    "title": "The Ultimate Hiragana Stroke Order Guide for Beginners",
+    "description": "Practical tips for hiragana stroke order guide.",
+    "date": "2025-09-14",
+    "category": "Writing Tips",
+    "keywords": "hiragana, stroke order, japanese writing",
+    "image": "../images/blog/hiragana-tips.png"
+  }
 ]
