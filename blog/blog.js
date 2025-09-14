@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
 // Function to load blog posts
 function loadBlogPosts() {
     const blogPostsContainer = document.getElementById('blog-posts');
-    fetch('posts.json')
+    // Cache-bust to avoid stale CDN/browser copies of posts.json
+    fetch('posts.json?v=2')
       .then(r => r.json())
       .then(posts => {
         // Deduplicate by id, keep latest date

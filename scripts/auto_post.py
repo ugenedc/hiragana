@@ -205,6 +205,7 @@ def generate_html_from_template(meta: dict, content_html: str):
     enriched = content_html + internal_links + cta
     # First try direct placeholder replacement
     before = html
+    html = html.replace('<!-- SERVER_INJECTED_CONTENT -->', enriched)
     html = html.replace('<div class="loading">Loading blog post...</div>', enriched)
     # If not replaced, inject robustly by replacing the inner HTML of the content container
     if html == before:
