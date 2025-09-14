@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Kanabloom Blog</title>
+    <link>https://hiraganaflashcards.com.au/blog/</link>
+    <description>Tips for learning Japanese, Hiragana & Katakana with Kanabloom.</description>
+    <language>en-au</language>
+    <ttl>1800</ttl>
+    <item>
+      <title>5 Tips to Learn Hiragana Faster</title>
+      <link>https://hiraganaflashcards.com.au/blog/posts/learn-hiragana-fast.html</link>
+      <guid>https://hiraganaflashcards.com.au/blog/posts/learn-hiragana-fast.html</guid>
+      <pubDate>Mon, 08 Apr 2024 00:00:00 +0000</pubDate>
+      <description>Learn Hiragana faster with 5 effective tips from Kanabloom.</description>
+    </item>
+  </channel>
+</rss>
+

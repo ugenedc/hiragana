@@ -1,0 +1,106 @@
+name: Optimize and Build Static Assets
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  optimize:
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install minifiers
+        run: |
+          npm init -y >/dev/null 2>&1 || true
+          npm i html-minifier-terser clean-css-cli @squoosh/cli -D
+
+      - name: Minify HTML and CSS
+        run: |
+          npx html-minifier-terser --input-dir . --output-dir . \
+            --file-ext html --collapse-whitespace --remove-comments --minify-css true || true
+          find . -type f -name "*.css" -not -path "./node_modules/*" -print0 | xargs -0 -I{} sh -c 'cleancss -o "$1.min" "$1" && mv "$1.min" "$1"' _ {}
+
+      - name: Convert images to WebP (keep originals)
+        run: |
+          find . -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" \) -not -path "./node_modules/*" -print0 | \
+            xargs -0 -I{} sh -c 'OUT="${1%.*}.webp"; npx @squoosh/cli --webp auto -d "$(dirname "$1")" "$1" >/dev/null 2>&1 || true' _ {}
+
+      - name: Rebuild sitemap.xml and feed.xml (basic)
+        run: |
+          python3 - <<'PY'
+import os, glob
+base = 'https://hiraganaflashcards.com.au'
+
+def write_sitemap():
+    urls = [
+        ('/', 'weekly', '1.0'),
+        ('/index.html', 'weekly', '0.9'),
+        ('/privacy-policy.html', 'yearly', '0.3'),
+        ('/terms.html', 'yearly', '0.3'),
+        ('/blog/', 'weekly', '0.7'),
+    ]
+    posts = sorted(glob.glob('blog/posts/*.html'))
+    for p in posts:
+        if os.path.basename(p) == 'template.html':
+            continue
+        urls.append((f'/blog/posts/{os.path.basename(p)}', 'monthly', '0.5'))
+    with open('sitemap.xml','w') as f:
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+        f.write('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
+        for path, cf, pr in urls:
+            f.write('  <url>\n')
+            f.write(f'    <loc>{base}{path}</loc>\n')
+            f.write(f'    <changefreq>{cf}</changefreq>\n')
+            f.write(f'    <priority>{pr}</priority>\n')
+            f.write('  </url>\n')
+        f.write('</urlset>\n')
+
+def write_feed():
+    items = []
+    for p in sorted(glob.glob('blog/posts/*.html')):
+        if os.path.basename(p) == 'template.html':
+            continue
+        url = f'{base}/blog/posts/{os.path.basename(p)}'
+        title = os.path.splitext(os.path.basename(p).replace('-', ' ').title())[0]
+        items.append((title, url))
+    with open('feed.xml','w') as f:
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+        f.write('<rss version="2.0">\n  <channel>\n')
+        f.write('    <title>Kanabloom Blog</title>\n')
+        f.write('    <link>https://hiraganaflashcards.com.au/blog/</link>\n')
+        f.write('    <description>Tips for learning Japanese, Hiragana & Katakana with Kanabloom.</description>\n')
+        f.write('    <language>en-au</language>\n')
+        for title, url in items:
+            f.write('    <item>\n')
+            f.write(f'      <title>{title}</title>\n')
+            f.write(f'      <link>{url}</link>\n')
+            f.write(f'      <guid>{url}</guid>\n')
+            f.write('    </item>\n')
+        f.write('  </channel>\n</rss>\n')
+
+write_sitemap()
+write_feed()
+PY
+
+      - name: Commit optimized assets
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "chore: optimize static assets, rebuild sitemap/feed"
+
+      - name: Push changes
+        if: success()
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+
