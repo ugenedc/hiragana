@@ -69,7 +69,7 @@ def propose_topic_with_gpt(existing_titles: list, suggestions: list):
         'content':(
             "Existing titles to avoid: " + json.dumps(existing_titles[:50]) + "\n" +
             "Optional trending suggestions: " + json.dumps([s.get('topic') for s in suggestions][:10]) + "\n" +
-            "Return JSON with keys: topic, category, keywords. Category is one of: Learning Tips, Writing Tips, Study Tips, Vocabulary, Grammar. Keywords is a short comma-separated string."
+            "Return JSON with keys: topic, category, keywords. Category is one of: Learning Tips, Writing Tips, Study Tips, Vocabulary, Grammar. Keywords is a short comma-separated string. Avoid titles starting with 'Mastering', 'Ultimate', or 'Beginner's Guide'."
         )
     }
     data = {
@@ -192,7 +192,7 @@ def call_openai_image(prompt: str, out_path: Path, size: str = '1024x1024'):
     # Generate image using the correct generations endpoint
     url = 'https://api.openai.com/v1/images/generations'
     headers = { 'Authorization': f'Bearer {key}', 'Content-Type': 'application/json' }
-    style = 'cute kawaii illustration, soft pastel palette, clean vector, minimal background, relevant to Japanese kana learning, no text overlays, friendly character, cherry blossom accents, square composition'
+    style = 'cute kawaii illustration, soft pastel palette, clean vector, minimal background, relevant to Japanese kana learning, no text overlays, friendly character (no copyrighted styles), cherry blossom accents, square composition'
     data = {
         'model': 'gpt-image-1',
         'prompt': f"{prompt}. {style}.",
@@ -350,22 +350,25 @@ def main():
     topic = topic_entry['topic'] if isinstance(topic_entry, dict) else str(topic_entry)
     today = datetime.date.today().strftime('%Y-%m-%d')
     prompt = (
-        "You are a senior SEO content writer. Create a 1000-1300 word ORIGINAL post for Kanabloom's blog.\n"
+        "You are a senior SEO content writer. Create a 1000–1300 word ORIGINAL post for Kanabloom's blog.\n"
         f"Topic focus: {topic}.\n"
-        "Requirements: include H2/H3 headings, an intro, skimmable paragraphs (max 3-4 sentences each), bullet lists, and a short conclusion.\n"
-        "Avoid generic fluff. Provide practical steps, examples, and a short practice section with kana-focused exercises.\n"
-        "Write for beginners learning Japanese kana (Hiragana/Katakana). Use simple English.\n"
-        "Add 3-5 suggested internal link anchor texts (do not insert actual links).\n"
-        "End with a one-line CTA to download Kanabloom with the text 'Download Kanabloom on iOS' (no URL).\n"
+        "Language & style: Use Australian English spelling and tone.\n"
+        "Structure: Use only H2 '##' and H3 '###' headings for sections and sub-sections; NEVER use '###' to fake bold. For emphasis, use **bold** rarely.\n"
+        "Skimmability: Short paragraphs (max 3–4 sentences), bullet lists where helpful.\n"
+        "Substance: Provide practical steps, specific examples, and a short practice section with kana-focused exercises. Avoid fluff.\n"
+        "Audience: Beginners learning Japanese kana (Hiragana/Katakana).\n"
+        "Internal links: Provide 3–5 suggested anchor texts only (no URLs).\n"
+        "Ending: Do NOT include a heading named 'Conclusion', 'Final word', or similar. Finish with a single line CTA: 'Download Kanabloom on iOS'.\n"
         f"Primary keywords: {topic_entry.get('keywords','hiragana, katakana, japanese')}."
     )
     md = call_openai_text(prompt)
     if not md.strip():
         # Fallback content if API returns empty
         md = f"# {topic}\n\nHere is a practical guide to {topic.lower()} for beginners.\n\n- What it is and why it matters\n- Step-by-step approach\n- Common mistakes to avoid\n- Quick practice ideas\n\nDownload Kanabloom to practice kana effectively."
-    # derive title from first H1 or fallback
+    # derive title from first H1 or fallback, and sanitise cliche starts
     m = re.search(r'^#\s+(.+)$', md, flags=re.MULTILINE)
     title = m.group(1).strip() if m else topic.title()
+    title = re.sub(r'^(Mastering|The Ultimate|Beginner\'s Guide to)\s*', '', title, flags=re.IGNORECASE).strip()
     base_slug = slugify(title)
     slug = base_slug
     # Ensure uniqueness; if exists, add date suffix
