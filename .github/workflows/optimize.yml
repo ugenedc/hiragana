@@ -26,7 +26,7 @@ jobs:
         run: |
           npx html-minifier-terser --input-dir . --output-dir . \
             --file-ext html --collapse-whitespace --remove-comments --minify-css true || true
-          find . -type f -name "*.css" -not -path "./node_modules/*" -print0 | xargs -0 -I{} sh -c 'cleancss -o "$1.min" "$1" && mv "$1.min" "$1"' _ {}
+          find . -type f -name "*.css" -not -path "./node_modules/*" -print0 | xargs -0 -I{} sh -c 'npx cleancss -o "$1.min" "$1" && mv "$1.min" "$1"' _ {}
 
       - name: Convert images to WebP (keep originals)
         run: |
