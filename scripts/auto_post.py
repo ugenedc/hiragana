@@ -183,7 +183,7 @@ def call_openai_text(prompt: str) -> str:
         print(f"OpenAI text generation failed: {e}")
         return ''
 
-def call_openai_image(prompt: str, out_path: Path, size: str = '1200x630'):
+def call_openai_image(prompt: str, out_path: Path, size: str = '1024x1024'):
     import requests
     key = os.environ.get('OPENAI_API_KEY')
     if not key:
@@ -192,7 +192,7 @@ def call_openai_image(prompt: str, out_path: Path, size: str = '1200x630'):
     # Generate image using the correct generations endpoint
     url = 'https://api.openai.com/v1/images/generations'
     headers = { 'Authorization': f'Bearer {key}', 'Content-Type': 'application/json' }
-    style = 'cute kawaii illustration, soft pastel palette, clean vector, minimal background, relevant to Japanese kana learning, no text overlays, friendly character, cherry blossom accents'
+    style = 'cute kawaii illustration, soft pastel palette, clean vector, minimal background, relevant to Japanese kana learning, no text overlays, friendly character, cherry blossom accents, square composition'
     data = {
         'model': 'gpt-image-1',
         'prompt': f"{prompt}. {style}.",
@@ -204,7 +204,14 @@ def call_openai_image(prompt: str, out_path: Path, size: str = '1200x630'):
     for _ in range(2):
         try:
             r = requests.post(url, headers=headers, json=data, timeout=60)
-            r.raise_for_status()
+            try:
+                r.raise_for_status()
+            except Exception as http_err:
+                try:
+                    print(f"Image API error {r.status_code}: {r.text[:500]}")
+                except Exception:
+                    pass
+                raise
             b64 = r.json()['data'][0]['b64_json']
             IMAGES_DIR.mkdir(parents=True, exist_ok=True)
             with open(out_path, 'wb') as f:
@@ -370,9 +377,10 @@ def main():
     image_path = IMAGES_DIR / f'{slug}.png'
     thumb_path = IMAGES_DIR / f'{slug}-thumb.png'
     try:
-        call_openai_image(hero_prompt, image_path, size='1200x630')
-        # Generate separate thumbnail at smaller size
-        call_openai_image(hero_prompt, thumb_path, size='600x315')
+        # Generate a square hero; reuse same for thumb to avoid API limits
+        call_openai_image(hero_prompt, image_path, size='1024x1024')
+        from shutil import copyfile
+        copyfile(image_path, thumb_path)
     except Exception as e:
         print(f"Image generation failed: {e}")
         # Ensure the post still has a hero image by copying a fallback
