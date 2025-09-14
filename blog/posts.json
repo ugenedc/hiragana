@@ -206,35 +206,5 @@
     "date": "2025-09-05",
     "category": "Learning Order",
     "image": "../images/blog/hiragana-before-katakana.png"
-  },
-  {
-    "id": "hiragana-stroke-order-guide-mastering-the-basics-of-japanese-writing",
-    "title": "Hiragana Stroke Order Guide: Mastering the Basics of Japanese Writing",
-    "description": "Practical tips for hiragana stroke order guide.",
-    "date": "2025-09-15",
-    "category": "Writing Tips",
-    "keywords": "hiragana, stroke order, japanese writing",
-    "image": "../images/blog/hiragana-tips.png",
-    "excerpt": "Hiragana Stroke Order Guide: Mastering the Basics of Japanese Writing Learning Japanese can be a thrilling journey, especially when it comes to mastering its unique writing systems. Hiragana, one of the foundational scri"
-  },
-  {
-    "id": "hiragana-stroke-order-guide-mastering-the-basics-of-japanese-writing-2025-09-14",
-    "title": "Hiragana Stroke Order Guide: Mastering the Basics of Japanese Writing",
-    "description": "Practical tips for hiragana stroke order guide.",
-    "date": "2025-09-14",
-    "category": "Writing Tips",
-    "keywords": "hiragana, stroke order, japanese writing",
-    "image": "../images/blog/hiragana-tips.png",
-    "excerpt": "Hiragana Stroke Order Guide: Mastering the Basics of Japanese Writing Learning Japanese can be a fun and rewarding experience, especially when you dive into the world of kana. Hiragana, one of the two phonetic scripts us"
-  },
-  {
-    "id": "unlocking-the-basics-of-japanese-a-beginners-guide-to-hiragana",
-    "title": "Unlocking the Basics of Japanese: A Beginner's Guide to Hiragana",
-    "description": "Practical tips for ```json.",
-    "date": "2025-09-14",
-    "category": "Learning Tips",
-    "keywords": "hiragana, japanese",
-    "image": "../images/blog/unlocking-the-basics-of-japanese-a-beginners-guide-to-hiragana-thumb.png",
-    "excerpt": "Unlocking the Basics of Japanese: A Beginner's Guide to Hiragana Learning Japanese can be a daunting task, especially for beginners. However, mastering the basics of the writing systems is crucial for building a strong f"
   }
 ]
