@@ -226,5 +226,15 @@
     "keywords": "hiragana, japanese",
     "image": "../images/blog/mastering-hiragana-and-katakana-your-guide-to-japanese-kana-thumb.png",
     "excerpt": "Mastering Hiragana and Katakana: Your Guide to Japanese Kana Learning Japanese can be an exciting journey, especially when you dive into its writing systems. One of the first steps in mastering the language is understand"
+  },
+  {
+    "id": "json",
+    "title": "```Json",
+    "description": "Practical tips for ```json.",
+    "date": "2025-09-15",
+    "category": "Learning Tips",
+    "keywords": "hiragana, japanese",
+    "image": "../images/blog/json-thumb.png",
+    "excerpt": "Understanding Hiragana: The Foundation of Japanese Language When embarking on your journey to learn Japanese, mastering hiragana is your first step. Hiragana is one of the two phonetic scripts used in the Japanese langua"
   }
 ]
