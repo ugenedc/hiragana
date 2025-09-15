@@ -4,12 +4,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Function to load blog posts
-function loadBlogPosts() {
+async function loadBlogPosts() {
     const blogPostsContainer = document.getElementById('blog-posts');
-    // Cache-bust to avoid stale CDN/browser copies of posts.json
-    fetch('posts.json?v=2')
-      .then(r => r.json())
-      .then(posts => {
+    try {
+        const res = await fetch(`posts.json?v=${Date.now()}`, { cache: 'no-cache' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const raw = await res.text();
+        const clean = raw.replace(/^[\uFEFF\u200B]+/, '').trim();
+        let posts = JSON.parse(clean);
         // Deduplicate by id, keep latest date
         const map = new Map();
         posts.forEach(p => {
@@ -21,17 +23,17 @@ function loadBlogPosts() {
             }
         });
         posts = Array.from(map.values());
-    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-    const fragment = document.createDocumentFragment();
+        posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+        const fragment = document.createDocumentFragment();
         posts.forEach(post => fragment.appendChild(createBlogPostCard(post)));
-    requestAnimationFrame(() => {
-        blogPostsContainer.innerHTML = '';
-        blogPostsContainer.appendChild(fragment);
+        requestAnimationFrame(() => {
+            blogPostsContainer.innerHTML = '';
+            blogPostsContainer.appendChild(fragment);
         });
-      })
-      .catch(() => {
+    } catch (e) {
+        console.error('Failed to load posts.json', e);
         blogPostsContainer.innerHTML = '<p>Unable to load posts.</p>';
-    });
+    }
 }
 
 // Function to create a blog post card
