@@ -207,14 +207,5 @@
     "category": "Learning Order",
     "image": "../images/blog/hiragana-before-katakana.png"
   },
-  {
-    "id": "json",
-    "title": "```Json",
-    "description": "Practical tips for ```json.",
-    "date": "2025-09-15",
-    "category": "Learning Tips",
-    "keywords": "hiragana, japanese",
-    "image": "../images/blog/json-thumb.png",
-    "excerpt": "Understanding Hiragana: The Foundation of Japanese Language When embarking on your journey to learn Japanese, mastering hiragana is your first step. Hiragana is one of the two phonetic scripts used in the Japanese langua"
   }
 ]

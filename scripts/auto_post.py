@@ -82,15 +82,26 @@ def propose_topic_with_gpt(existing_titles: list, suggestions: list):
     r.raise_for_status()
     text = r.json()['choices'][0]['message']['content']
     try:
-        obj = json.loads(text)
+        # Strip code fences if present
+        clean = text.strip()
+        if clean.startswith('```'):
+            # try to grab JSON inside code block
+            start = clean.find('{')
+            end = clean.rfind('}')
+            if start != -1 and end != -1 and end > start:
+                clean = clean[start:end+1]
+        # Remove any lingering backticks/labels
+        clean = clean.replace('```json', '').replace('```JSON', '').replace('```', '').strip()
+        obj = json.loads(clean)
         return {
             'topic': obj.get('topic'),
             'category': obj.get('category','Learning Tips'),
             'keywords': obj.get('keywords','hiragana, japanese')
         }
     except Exception:
-        # Attempt to extract simple line
-        topic = text.strip().split('\n')[0][:120]
+        # Attempt to extract first meaningful line
+        line = text.strip().split('\n')[0]
+        topic = line.strip('` ').strip()[:120]
         return {'topic': topic, 'category':'Learning Tips', 'keywords':'hiragana, japanese'}
 
 def load_existing_posts():
