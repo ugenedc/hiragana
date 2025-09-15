@@ -126,6 +126,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://hiraganaflashcards.com.au/blog/posts/json.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://hiraganaflashcards.com.au/blog/posts/katakana-practice-tips.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -141,16 +146,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hiraganaflashcards.com.au/blog/posts/mastering-hiragana-a-beginners-guide-to-japanese-kana.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://hiraganaflashcards.com.au/blog/posts/mastering-hiragana-and-katakana-your-guide-to-japanese-kana.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://hiraganaflashcards.com.au/blog/posts/morning-study-routine.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -162,11 +157,6 @@
   </url>
   <url>
     <loc>https://hiraganaflashcards.com.au/blog/posts/study-anywhere.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://hiraganaflashcards.com.au/blog/posts/json.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
