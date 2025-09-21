@@ -170,4 +170,9 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://hiraganaflashcards.com.au/blog/posts/visualizing-kana-using-images-to-embed-hiragana-and-katakana-in-your-memory.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>
