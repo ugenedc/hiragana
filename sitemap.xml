@@ -175,4 +175,9 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://hiraganaflashcards.com.au/blog/posts/discovering-the-beauty-of-kana-a-journey-through-japanese-script.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>
