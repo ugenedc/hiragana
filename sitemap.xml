@@ -31,7 +31,22 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://hiraganaflashcards.com.au/blog/posts/discovering-the-beauty-of-kana-a-journey-through-japanese-script.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://hiraganaflashcards.com.au/blog/posts/effective-japanese-flashcards.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hiraganaflashcards.com.au/blog/posts/engaging-methods-to-practice-japanese-kana-through-daily-life.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hiraganaflashcards.com.au/blog/posts/fun-and-effective-games-to-learn-hiragana-and-katakana.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -161,22 +176,7 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hiraganaflashcards.com.au/blog/posts/engaging-methods-to-practice-japanese-kana-through-daily-life.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://hiraganaflashcards.com.au/blog/posts/fun-and-effective-games-to-learn-hiragana-and-katakana.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://hiraganaflashcards.com.au/blog/posts/visualizing-kana-using-images-to-embed-hiragana-and-katakana-in-your-memory.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://hiraganaflashcards.com.au/blog/posts/discovering-the-beauty-of-kana-a-journey-through-japanese-script.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
