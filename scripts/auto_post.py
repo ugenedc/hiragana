@@ -78,7 +78,7 @@ def propose_topic_with_gpt(existing_titles: list, suggestions: list):
         'temperature':0.9,
         'max_tokens':200
     }
-    r = requests.post(url, headers=headers, json=data, timeout=60)
+    r = requests.post(url, headers=headers, json=data, timeout=180)
     r.raise_for_status()
     text = r.json()['choices'][0]['message']['content']
     try:
@@ -212,14 +212,14 @@ def call_openai_image(prompt: str, out_path: Path, size: str = '1024x1024'):
         'response_format': 'b64_json'
     }
     last_err = None
-    for _ in range(2):
+    for attempt in range(2):
         try:
-            r = requests.post(url, headers=headers, json=data, timeout=60)
+            r = requests.post(url, headers=headers, json=data, timeout=180)
             try:
                 r.raise_for_status()
             except Exception as http_err:
                 try:
-                    print(f"Image API error {r.status_code}: {r.text[:500]}")
+                    print(f"Image API error (attempt {attempt+1}) {r.status_code}: {r.text[:500]}")
                 except Exception:
                     pass
                 raise
@@ -227,6 +227,11 @@ def call_openai_image(prompt: str, out_path: Path, size: str = '1024x1024'):
             IMAGES_DIR.mkdir(parents=True, exist_ok=True)
             with open(out_path, 'wb') as f:
                 f.write(base64.b64decode(b64))
+            try:
+                size = out_path.stat().st_size
+                print(f"Image written: {out_path} ({size} bytes)")
+            except Exception:
+                pass
             return
         except Exception as e:
             last_err = e
