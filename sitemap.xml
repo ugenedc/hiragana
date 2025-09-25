@@ -46,6 +46,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://hiraganaflashcards.com.au/blog/posts/exploring-the-rhythm-of-japanese-kana-a-musical-approach-to-learning.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://hiraganaflashcards.com.au/blog/posts/fun-and-effective-games-to-learn-hiragana-and-katakana.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -176,17 +181,12 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hiraganaflashcards.com.au/blog/posts/visualizing-kana-using-images-to-embed-hiragana-and-katakana-in-your-memory.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://hiraganaflashcards.com.au/blog/posts/exploring-the-rhythm-of-japanese-kana-a-musical-approach-to-learning.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://hiraganaflashcards.com.au/blog/posts/the-art-of-kana-calligraphy-a-creative-way-to-learn-japanese-scripts.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hiraganaflashcards.com.au/blog/posts/visualizing-kana-using-images-to-embed-hiragana-and-katakana-in-your-memory.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
