@@ -190,4 +190,9 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://hiraganaflashcards.com.au/blog/posts/the-fun-of-kana-karaoke-learning-japanese-through-song.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>
