@@ -7,6 +7,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: pages-build
+  cancel-in-progress: true
+
 jobs:
   optimize:
     if: ${{ github.actor != 'github-actions[bot]' }}
