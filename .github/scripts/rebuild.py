@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import os, glob
 
-BASE = 'https://hiraganaflashcards.com.au'
+BASE = 'https://hiragana.com.au'
 
 def write_sitemap():
     urls = [
@@ -39,7 +39,7 @@ def write_feed():
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         f.write('<rss version="2.0">\n  <channel>\n')
         f.write('    <title>Kanabloom Blog</title>\n')
-        f.write('    <link>https://hiraganaflashcards.com.au/blog/</link>\n')
+        f.write('    <link>https://hiragana.com.au/blog/</link>\n')
         f.write('    <description>Tips for learning Japanese, Hiragana & Katakana with Kanabloom.</description>\n')
         f.write('    <language>en-au</language>\n')
         for title, url in items:

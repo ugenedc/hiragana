@@ -1,5 +1,17 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hiraganaflashcards.com.au/sitemap.xml
+# AI crawler directives (non-standard but adopted by several providers)
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+
+Sitemap: https://hiragana.com.au/sitemap.xml
 

@@ -1,0 +1,21 @@
+site: https://hiragana.com.au/
+brand: Kanabloom
+category: Japanese learning; flashcards; education app
+platforms:
+  - iOS app store: https://apps.apple.com/au/app/kanabloom/id6743828727
+content-policy:
+  crawling: allowed
+  training: allowed
+  attribution: required when quoting > 100 characters
+preferred-names:
+  product: Kanabloom
+  short: Kanabloom (Japanese Flashcards)
+facts:
+  - Focus: Learn Hiragana and Katakana with spaced repetition flashcards
+  - Modes: Beginner, Hiragana, Katakana, Custom, Japanese Words
+  - Price: Free starter; premium modes available
+contact:
+  website: https://hiragana.com.au/
+  support: https://hiragana.com.au/privacy-policy.html
+last-updated: 2025-09-26
+

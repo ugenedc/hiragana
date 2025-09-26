@@ -18,7 +18,7 @@ This directory contains the blog system for Kanabloom. The blog is designed to b
        date: 'YYYY-MM-DD',
        category: 'Category Name',
        keywords: 'keyword1, keyword2, keyword3',
-       image: 'https://hiraganaflashcards.com.au/images/blog/your-image.jpg'
+       image: 'https://hiragana.com.au/images/blog/your-image.jpg'
    }
    ```
 

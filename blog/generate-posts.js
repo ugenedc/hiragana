@@ -17,7 +17,7 @@ const POSTS = [
         date: '2023-06-15',
         category: 'Learning Tips',
         keywords: 'hiragana, learning tips, japanese, language learning',
-        image: 'https://hiraganaflashcards.com.au/images/blog/hiragana-tips.jpg'
+        image: 'https://hiragana.com.au/images/blog/hiragana-tips.jpg'
     },
     {
         id: 'katakana-vs-hiragana',
@@ -26,7 +26,7 @@ const POSTS = [
         date: '2023-06-10',
         category: 'Grammar',
         keywords: 'katakana, hiragana, japanese writing, grammar',
-        image: 'https://hiraganaflashcards.com.au/images/blog/katakana-hiragana.jpg'
+        image: 'https://hiragana.com.au/images/blog/katakana-hiragana.jpg'
     },
     {
         id: 'spaced-repetition',
@@ -35,7 +35,7 @@ const POSTS = [
         date: '2023-06-05',
         category: 'Learning Science',
         keywords: 'spaced repetition, learning science, memory, retention',
-        image: 'https://hiraganaflashcards.com.au/images/blog/spaced-repetition.jpg'
+        image: 'https://hiragana.com.au/images/blog/spaced-repetition.jpg'
     }
 ];
 

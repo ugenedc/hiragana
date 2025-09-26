@@ -126,7 +126,7 @@ def fetch_trending_candidates():
     """Optionally fetch trending titles from public feeds. Best-effort; safe fallbacks."""
     import requests
     cands = []
-    headers = {'User-Agent': 'kanabloom-bot/1.0 (+https://hiraganaflashcards.com.au)'}
+    headers = {'User-Agent': 'kanabloom-bot/1.0 (+https://hiragana.com.au)'}
     # Tofugu feed (Japanese learning blog)
     try:
         r = requests.get('https://www.tofugu.com/feeds/all.xml', headers=headers, timeout=10)
@@ -195,29 +195,30 @@ def call_openai_text(prompt: str) -> str:
         return ''
 
 def call_openai_image(prompt: str, out_path: Path, size: str = '1024x1024'):
-    import requests
+    import requests, time
     key = os.environ.get('OPENAI_API_KEY')
     if not key:
         print('OPENAI_API_KEY is not set', file=sys.stderr)
         sys.exit(1)
-    # Generate image using the correct generations endpoint
     url = 'https://api.openai.com/v1/images/generations'
     headers = { 'Authorization': f'Bearer {key}', 'Content-Type': 'application/json' }
-    style = 'cute kawaii illustration, soft pastel palette, clean vector, minimal background, relevant to Japanese kana learning, no text overlays, friendly character (no copyrighted styles), cherry blossom accents, square composition'
+    # Strengthen style and relevance; avoid text overlays and copyrighted styles
+    style = 'cute kawaii illustration, soft pastel palette, clean vector, minimal background, relevant to Japanese kana learning, no text overlays, original style (no copyrighted IP), cherry blossom accents'
     data = {
         'model': 'gpt-image-1',
-        'prompt': f"{prompt}. {style}.",
+        'prompt': f"High-quality blog hero image: {prompt}. {style}.",
         'size': size,
         'n': 1,
         'response_format': 'b64_json'
     }
     last_err = None
-    for attempt in range(2):
+    backoffs = [2, 6, 12]
+    for attempt in range(3):
         try:
             r = requests.post(url, headers=headers, json=data, timeout=180)
             try:
                 r.raise_for_status()
-            except Exception as http_err:
+            except Exception:
                 try:
                     print(f"Image API error (attempt {attempt+1}) {r.status_code}: {r.text[:500]}")
                 except Exception:
@@ -227,18 +228,25 @@ def call_openai_image(prompt: str, out_path: Path, size: str = '1024x1024'):
             IMAGES_DIR.mkdir(parents=True, exist_ok=True)
             with open(out_path, 'wb') as f:
                 f.write(base64.b64decode(b64))
+            # Validate PNG signature and minimum size
             try:
-                size = out_path.stat().st_size
-                print(f"Image written: {out_path} ({size} bytes)")
-            except Exception:
-                pass
+                data_bytes = out_path.read_bytes()
+                is_png = data_bytes.startswith(b'\x89PNG\r\n\x1a\n')
+                size_bytes = len(data_bytes)
+                print(f"Image written: {out_path} ({size_bytes} bytes)")
+                if not is_png or size_bytes < 20000:  # ~20KB minimum
+                    raise ValueError('Generated image failed validation (format/size)')
+            except Exception as v:
+                print(f"Image validation failed: {v}")
+                raise
             return
         except Exception as e:
             last_err = e
-            try:
-                import time; time.sleep(2)
-            except Exception:
-                pass
+            if attempt < len(backoffs):
+                try:
+                    time.sleep(backoffs[attempt])
+                except Exception:
+                    pass
     if last_err:
         raise last_err
 
@@ -344,7 +352,7 @@ def update_sitemap_and_feed(slug: str, title: str):
     # Append to sitemap.xml if exists
     if SITEMAP.exists():
         sm = SITEMAP.read_text()
-        entry = f"  <url>\n    <loc>https://hiraganaflashcards.com.au/blog/posts/{slug}.html</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.5</priority>\n  </url>\n"
+        entry = f"  <url>\n    <loc>https://hiragana.com.au/blog/posts/{slug}.html</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.5</priority>\n  </url>\n"
         if entry not in sm:
             sm = sm.replace('</urlset>', entry + '</urlset>')
             SITEMAP.write_text(sm)
@@ -354,12 +362,33 @@ def update_sitemap_and_feed(slug: str, title: str):
         item = (
             '    <item>\n'
             f'      <title>{title}</title>\n'
-            f'      <link>https://hiraganaflashcards.com.au/blog/posts/{slug}.html</link>\n'
-            f'      <guid>https://hiraganaflashcards.com.au/blog/posts/{slug}.html</guid>\n'
+            f'      <link>https://hiragana.com.au/blog/posts/{slug}.html</link>\n'
+            f'      <guid>https://hiragana.com.au/blog/posts/{slug}.html</guid>\n'
             '    </item>\n'
         )
         fd = fd.replace('  </channel>\n</rss>', item + '  </channel>\n</rss>')
         FEED.write_text(fd)
+
+def ensure_thumbnail(image_path: Path, thumb_path: Path):
+    """Create a 600x315 thumbnail if Pillow is available, else copy the hero."""
+    try:
+        from PIL import Image
+        img = Image.open(image_path).convert('RGBA')
+        target_w, target_h = 600, 315
+        # Letterbox into 600x315 preserving aspect ratio
+        ratio = min(target_w / img.width, target_h / img.height)
+        new_w, new_h = int(img.width * ratio), int(img.height * ratio)
+        img_resized = img.resize((new_w, new_h), Image.LANCZOS)
+        canvas = Image.new('RGBA', (target_w, target_h), (255, 255, 255, 255))
+        offset = ((target_w - new_w) // 2, (target_h - new_h) // 2)
+        canvas.paste(img_resized, offset)
+        canvas = canvas.convert('RGB')
+        canvas.save(thumb_path, format='PNG', optimize=True)
+        print(f"Thumbnail created: {thumb_path}")
+    except Exception as e:
+        print(f"Thumbnail generation not available ({e}); copying hero as thumb.")
+        from shutil import copyfile
+        copyfile(image_path, thumb_path)
 
 def main():
     topic_entry = pick_topic()
@@ -375,46 +404,40 @@ def main():
         "Audience: Beginners learning Japanese kana (Hiragana/Katakana).\n"
         "Internal links: Provide 3–5 suggested anchor texts only (no URLs).\n"
         "Ending: Do NOT include a heading named 'Conclusion', 'Final word', or similar. Finish with a single line CTA: 'Download Kanabloom on iOS'.\n"
-        f"Primary keywords: {topic_entry.get('keywords','hiragana, katakana, japanese')}."
-    )
+        f"Primary keywords: {topic_entry.get('keywords','hiragana, katakana, japanese')}.")
     md = call_openai_text(prompt)
     if not md.strip():
-        # Fallback content if API returns empty
         md = f"# {topic}\n\nHere is a practical guide to {topic.lower()} for beginners.\n\n- What it is and why it matters\n- Step-by-step approach\n- Common mistakes to avoid\n- Quick practice ideas\n\nDownload Kanabloom to practice kana effectively."
-    # derive title from first H1 or fallback, and sanitise cliche starts
     m = re.search(r'^#\s+(.+)$', md, flags=re.MULTILINE)
     title = m.group(1).strip() if m else topic.title()
-    title = re.sub(r'^(Mastering|The Ultimate|Beginner\'s Guide to)\s*', '', title, flags=re.IGNORECASE).strip()
+    title = re.sub(r"^(Mastering|The Ultimate|Beginner's Guide to)\s*", '', title, flags=re.IGNORECASE).strip()
     base_slug = slugify(title)
     slug = base_slug
-    # Ensure uniqueness; if exists, add date suffix
     i = 0
     while (POSTS_DIR / f'{slug}.html').exists() or (POSTS_DIR / f'{slug}.md').exists():
         i += 1
         slug = f"{base_slug}-{today}" if i == 1 else f"{base_slug}-{today}-{i}"
-    hero_prompt = f"Blog hero for article '{title}' about Japanese kana learning, cute and relevant illustration"
+    # Strengthen image prompt for relevance
+    hero_prompt = (
+        f"Article title: '{title}'. Create an ORIGINAL, on-topic illustration for a blog hero about Japanese kana learning. "
+        f"Emphasise motifs related to: {topic_entry.get('keywords','kana, japanese')}. No text, no logos."
+    )
     image_path = IMAGES_DIR / f'{slug}.png'
     thumb_path = IMAGES_DIR / f'{slug}-thumb.png'
     try:
-        # Generate a square hero; reuse same for thumb to avoid API limits
         call_openai_image(hero_prompt, image_path, size='1024x1024')
-        from shutil import copyfile
-        copyfile(image_path, thumb_path)
+        ensure_thumbnail(image_path, thumb_path)
     except Exception as e:
         print(f"Image generation failed: {e}")
-        # Ensure the post still has a hero image by copying a fallback
         try:
             from shutil import copyfile
             fallback = IMAGES_DIR / 'hiragana-tips.png'
             IMAGES_DIR.mkdir(parents=True, exist_ok=True)
             if fallback.exists():
                 copyfile(fallback, image_path)
-                copyfile(fallback, thumb_path)
+                ensure_thumbnail(image_path, thumb_path)
             else:
-                # Tiny transparent PNG placeholder
-                placeholder = (
-                    b'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII='
-                )
+                placeholder = (b'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=')
                 with open(image_path, 'wb') as f:
                     f.write(base64.b64decode(placeholder))
                 with open(thumb_path, 'wb') as f:
@@ -431,14 +454,11 @@ def main():
         'keywords': topic_entry.get('keywords','hiragana, katakana, japanese, flashcards, learning'),
         'image': f'../images/blog/{slug}.png'
     }
-    # Use hero for OG/template; cards (posts.json) will use the thumbnail
     meta['image'] = f'../images/blog/{slug}.png'
     thumb_rel = f'../images/blog/{slug}-thumb.png'
-    # Generate an excerpt from markdown
     excerpt = re.sub(r'[#>*`\-\[\]]', '', md)
     excerpt = ' '.join(excerpt.split())[:220]
     meta['excerpt'] = excerpt if excerpt else meta['description']
-    # Write to posts.json using the thumbnail path for cards
     card_meta = dict(meta)
     card_meta['image'] = thumb_rel
     append_posts_json(card_meta)
