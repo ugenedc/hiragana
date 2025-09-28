@@ -198,8 +198,8 @@ def call_openai_image(prompt: str, out_path: Path, size: str = '1024x1024'):
     import requests, time
     key = os.environ.get('OPENAI_API_KEY')
     if not key:
-        print('OPENAI_API_KEY is not set', file=sys.stderr)
-        sys.exit(1)
+        # Do not exit the program; allow caller to fallback to local random image
+        raise RuntimeError('OPENAI_API_KEY is not set')
     url = 'https://api.openai.com/v1/images/generations'
     headers = { 'Authorization': f'Bearer {key}', 'Content-Type': 'application/json' }
     # Strengthen style and relevance; avoid text overlays and copyrighted styles
@@ -370,20 +370,19 @@ def update_sitemap_and_feed(slug: str, title: str):
         FEED.write_text(fd)
 
 def ensure_thumbnail(image_path: Path, thumb_path: Path):
-    """Create a 600x315 thumbnail if Pillow is available, else copy the hero."""
+    """Create a 600x315 thumbnail that COVERS the frame (no letterboxing).
+
+    If Pillow is unavailable, the hero image is copied as a best-effort fallback.
+    """
     try:
-        from PIL import Image
-        img = Image.open(image_path).convert('RGBA')
+        from PIL import Image, ImageOps
+        img = Image.open(image_path)
         target_w, target_h = 600, 315
-        # Letterbox into 600x315 preserving aspect ratio
-        ratio = min(target_w / img.width, target_h / img.height)
-        new_w, new_h = int(img.width * ratio), int(img.height * ratio)
-        img_resized = img.resize((new_w, new_h), Image.LANCZOS)
-        canvas = Image.new('RGBA', (target_w, target_h), (255, 255, 255, 255))
-        offset = ((target_w - new_w) // 2, (target_h - new_h) // 2)
-        canvas.paste(img_resized, offset)
-        canvas = canvas.convert('RGB')
-        canvas.save(thumb_path, format='PNG', optimize=True)
+        # Use cover crop so the thumbnail fills the box with no borders
+        fitted = ImageOps.fit(img, (target_w, target_h), method=Image.LANCZOS, centering=(0.5, 0.5))
+        # Ensure RGB to avoid alpha-related artifacts on white backgrounds
+        fitted = fitted.convert('RGB')
+        fitted.save(thumb_path, format='PNG', optimize=True)
         print(f"Thumbnail created: {thumb_path}")
     except Exception as e:
         print(f"Thumbnail generation not available ({e}); copying hero as thumb.")
@@ -424,26 +423,37 @@ def main():
     )
     image_path = IMAGES_DIR / f'{slug}.png'
     thumb_path = IMAGES_DIR / f'{slug}-thumb.png'
+    # Helper to pick a random existing blog image (excluding thumbnails)
+    def pick_random_existing_image_path() -> Path:
+        import random
+        IMAGES_DIR.mkdir(parents=True, exist_ok=True)
+        candidates = []
+        for p in IMAGES_DIR.glob('*.png'):
+            name = p.name.lower()
+            if name.endswith('-thumb.png'):
+                continue
+            if name in {'json.png', 'title.png'}:
+                continue
+            candidates.append(p)
+        if not candidates:
+            return IMAGES_DIR / 'hiragana-tips.png'
+        return random.choice(candidates)
+
     try:
         call_openai_image(hero_prompt, image_path, size='1024x1024')
         ensure_thumbnail(image_path, thumb_path)
     except Exception as e:
-        print(f"Image generation failed: {e}")
+        print(f"Image generation failed or unavailable, using random existing image: {e}")
+        from shutil import copyfile
+        fallback_src = pick_random_existing_image_path()
         try:
-            from shutil import copyfile
-            fallback = IMAGES_DIR / 'hiragana-tips.png'
-            IMAGES_DIR.mkdir(parents=True, exist_ok=True)
-            if fallback.exists():
-                copyfile(fallback, image_path)
-                ensure_thumbnail(image_path, thumb_path)
-            else:
-                placeholder = (b'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=')
-                with open(image_path, 'wb') as f:
-                    f.write(base64.b64decode(placeholder))
-                with open(thumb_path, 'wb') as f:
-                    f.write(base64.b64decode(placeholder))
-        except Exception as e2:
-            print(f"Fallback image copy failed: {e2}")
+            copyfile(fallback_src, image_path)
+        except Exception as copy_err:
+            print(f"Copying random image failed ({copy_err}); writing tiny placeholder.")
+            placeholder = (b'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=')
+            with open(image_path, 'wb') as f:
+                f.write(base64.b64decode(placeholder))
+        ensure_thumbnail(image_path, thumb_path)
     write_markdown(slug, md)
     meta = {
         'id': slug,

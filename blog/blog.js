@@ -48,10 +48,10 @@ function createBlogPostCard(post) {
         day: 'numeric'
     });
     
-    // Create card HTML without image for now
+    // Create card HTML
     card.innerHTML = `
         <div class="blog-post-image">
-            <img src="${post.image}" alt="${post.title}" onerror="this.src='../images/blog/placeholder.png'">
+            <img src="${post.image}" alt="${post.title}" loading="lazy" decoding="async">
         </div>
         <div class="blog-post-content">
             <h2 class="blog-post-title">${post.title}</h2>
@@ -71,7 +71,28 @@ function createBlogPostCard(post) {
             <a href="posts/${post.id}.html" class="read-more">Read More</a>
         </div>
     `;
-    
+    // Robust image error fallback: choose a random existing blog image
+    try {
+        const imgEl = card.querySelector('.blog-post-image img');
+        const fallbacks = [
+            '../images/blog/hiragana-tips.png',
+            '../images/blog/katakana-hiragana.png',
+            '../images/blog/spaced-repetition.png',
+            '../images/blog/japanese-reading-practice.png',
+            '../images/blog/japanese-writing-practice.png',
+            '../images/blog/japanese-grammar-tips.png',
+            '../images/blog/creative-japanese-learning.png',
+            '../images/blog/woman-with-coffee.png',
+            '../images/blog/man-on-plane.png'
+        ];
+        imgEl.addEventListener('error', () => {
+            const pick = fallbacks[Math.floor(Math.random() * fallbacks.length)];
+            if (imgEl.src.indexOf(pick) === -1) {
+                imgEl.src = pick;
+            }
+        }, { once: true });
+    } catch (_) {}
+
     return card;
 }
 
