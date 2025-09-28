@@ -81,6 +81,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://hiragana.com.au/blog/posts/interactive-kana-learning-engaging-activities-to-reinforce-hiragana-and-katakana.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://hiragana.com.au/blog/posts/japanese-grammar-tips.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -151,6 +156,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://hiragana.com.au/blog/posts/kana-in-context-building-sentences-using-basic-hiragana-and-katakana.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://hiragana.com.au/blog/posts/katakana-practice-tips.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -191,22 +201,12 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hiragana.com.au/blog/posts/visualizing-kana-using-images-to-embed-hiragana-and-katakana-in-your-memory.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://hiragana.com.au/blog/posts/transforming-everyday-items-into-kana-learning-tools.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hiragana.com.au/blog/posts/kana-in-context-building-sentences-using-basic-hiragana-and-katakana.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://hiragana.com.au/blog/posts/interactive-kana-learning-engaging-activities-to-reinforce-hiragana-and-katakana.html</loc>
+    <loc>https://hiragana.com.au/blog/posts/visualizing-kana-using-images-to-embed-hiragana-and-katakana-in-your-memory.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
