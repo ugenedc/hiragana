@@ -215,4 +215,9 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://hiragana.com.au/blog/posts/kana-through-comics-using-manga-to-learn-hiragana-and-katakana.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>
