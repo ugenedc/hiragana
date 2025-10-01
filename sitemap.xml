@@ -235,4 +235,9 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://hiragana.com.au/blog/posts/essential-kana-resources-the-best-apps-and-websites-for-learning-hiragana-and-ka.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>
