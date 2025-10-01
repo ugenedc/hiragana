@@ -31,6 +31,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://hiragana.com.au/blog/posts/daily-kana-challenges-fun-ways-to-incorporate-hiragana-and-katakana-into-your-ro.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://hiragana.com.au/blog/posts/discovering-the-beauty-of-kana-a-journey-through-japanese-script.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -51,7 +56,17 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://hiragana.com.au/blog/posts/exploring-the-world-of-kana-creative-storytelling-techniques-to-learn-hiragana-a.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://hiragana.com.au/blog/posts/fun-and-effective-games-to-learn-hiragana-and-katakana.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hiragana.com.au/blog/posts/fun-interactive-tools-to-enhance-your-kana-learning-experience.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -161,6 +176,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://hiragana.com.au/blog/posts/kana-through-comics-using-manga-to-learn-hiragana-and-katakana.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://hiragana.com.au/blog/posts/katakana-practice-tips.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -201,37 +221,17 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://hiragana.com.au/blog/posts/transform-your-thoughts-how-thinking-in-kana-can-accelerate-your-japanese-learni.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://hiragana.com.au/blog/posts/transforming-everyday-items-into-kana-learning-tools.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://hiragana.com.au/blog/posts/visualizing-kana-using-images-to-embed-hiragana-and-katakana-in-your-memory.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://hiragana.com.au/blog/posts/exploring-the-world-of-kana-creative-storytelling-techniques-to-learn-hiragana-a.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://hiragana.com.au/blog/posts/kana-through-comics-using-manga-to-learn-hiragana-and-katakana.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://hiragana.com.au/blog/posts/daily-kana-challenges-fun-ways-to-incorporate-hiragana-and-katakana-into-your-ro.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://hiragana.com.au/blog/posts/transform-your-thoughts-how-thinking-in-kana-can-accelerate-your-japanese-learni.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://hiragana.com.au/blog/posts/fun-interactive-tools-to-enhance-your-kana-learning-experience.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
