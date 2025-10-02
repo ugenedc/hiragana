@@ -240,4 +240,9 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://hiragana.com.au/blog/posts/unlocking-the-secrets-of-kana-how-to-use-rhymes-and-rhythm-to-enhance-your-memor.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>
